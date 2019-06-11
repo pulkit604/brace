@@ -131,6 +131,11 @@ var CssHighlightRules = function() {
                 + "|swash|ornaments|annotation|stylistic|styleset|character-variant)"
         }],
 
+        "code_puzzle_question": [{
+             token: "code_puzzle_question",
+             regex: "qbutton"
+        }],
+
         "comments" : [{
             token: "comment", // multi line comment
             regex: "\\/\\*",
