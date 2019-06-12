@@ -50,9 +50,9 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 
 ace.define("ace/mode/code_puzzle",['require', 'exports', 'ace/lib/oop', 'ace/mode/text', 'ace/mode/custom_highlight_rules'], function(acequire, exports, module) {
 
-    var oop = acequire("../lib/oop");
+    var oop = acequire("ace/lib/oop");
     var TextMode = acequire("ace/mode/text").Mode;
-    var CodePuzzleHighlightRules = acequire("./code_puzzle_highlight_rules").CodePuzzleHighlightRules;
+    var CodePuzzleHighlightRules = acequire("ace/mode/code_puzzle_highlight_rules").CodePuzzleHighlightRules;
     
     oop.inherits(Mode, TextMode);
     exports.Mode = Mode;
@@ -61,8 +61,8 @@ ace.define("ace/mode/code_puzzle",['require', 'exports', 'ace/lib/oop', 'ace/mod
 ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
     "use strict";
 
-    var oop = acequire("../lib/oop");
-    var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
+    var oop = acequire("ace/lib/oop");
+    var TextHighlightRules = acequire("ace/mode/text_highlight_rules").TextHighlightRules;
 
     var CodePuzzleHighlightRules = function() {
         this.$rules = {
