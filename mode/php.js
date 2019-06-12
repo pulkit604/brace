@@ -394,7 +394,7 @@ var JavaScriptHighlightRules = function(options) {
                 regex: /^#!.*$/
             },
                 {
-                token: "code_puzzle_question",
+                token: "codepuzzlequestion",
                 regex: "qbutton"
                 }
         ],
