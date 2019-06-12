@@ -2823,7 +2823,7 @@ function DefaultHandlers(mouseHandler) {
     mouseHandler.$clickSelection = null;
 
     var editor = mouseHandler.editor;
-    editor.setDefaultHandler("mouseclick", this.onMouseClick.bind(mouseHanlder));
+    editor.setDefaultHandler("mouseclick", this.onMouseClick.bind(mouseHandler));
     editor.setDefaultHandler("mousedown", this.onMouseDown.bind(mouseHandler));
     editor.setDefaultHandler("dblclick", this.onDoubleClick.bind(mouseHandler));
     editor.setDefaultHandler("tripleclick", this.onTripleClick.bind(mouseHandler));
