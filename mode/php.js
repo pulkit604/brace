@@ -48,57 +48,6 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 
 });
 
-ace.define("ace/mode/my_doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
-    "use strict";
-
-    var oop = acequire("../lib/oop");
-    var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
-
-    var MyDocCommentHighlightRules = function() {
-        this.$rules = {
-            "start" : [ {
-                token : "comment.doc.tag",
-                regex : "@[\\w\\d_]+" // TODO: fix email addresses
-            },
-                MyDocCommentHighlightRules.getTagRule(),
-                {
-                    defaultToken : "comment.doc",
-                    caseInsensitive: true
-                }]
-        };
-    };
-
-    oop.inherits(MyDocCommentHighlightRules, TextHighlightRules);
-
-    MyDocCommentHighlightRules.getTagRule = function(start) {
-        return {
-            token : "comment.doc.tag.storage.type",
-            regex : "\\b(?:TODO|FIXME|XXX|HACK)\\b"
-        };
-    };
-
-    MyDocCommentHighlightRules.getStartRule = function(start) {
-        return {
-            token : "comment.doc", // doc comment
-            regex : "\\/\\*(?=\\*)",
-            next  : start
-        };
-    };
-
-    MyDocCommentHighlightRules.getEndRule = function (start) {
-        return {
-            token : "comment.doc", // closing comment
-            regex : "\\*\\/",
-            next  : start
-        };
-    };
-
-
-    exports.MyDocCommentHighlightRules = MyDocCommentHighlightRules;
-
-});
-
-
 ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
     "use strict";
 
@@ -118,17 +67,6 @@ ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module",
     exports.CodePuzzleHighlightRules = CodePuzzleHighlightRules;
 
 });
-
-ace.define("ace/mode/code_puzzle",['require', 'exports', 'module', 'ace/lib/oop', 'ace/mode/text', 'ace/mode/code_puzzle_highlight_rules'], function(acequire, exports, module) {
-
-    var oop = acequire("ace/lib/oop");
-    var TextMode = acequire("ace/mode/text").Mode;
-    var CodePuzzleHighlightRules = acequire("ace/mode/code_puzzle_highlight_rules").CodePuzzleHighlightRules;
-    
-    oop.inherits(Mode, TextMode);
-    exports.Mode = Mode;
-});
-
 
 ace.define("ace/mode/css_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
 "use strict";
@@ -1080,7 +1018,7 @@ oop.inherits(HtmlHighlightRules, XmlHighlightRules);
 exports.HtmlHighlightRules = HtmlHighlightRules;
 });
 
-ace.define("ace/mode/php_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules","ace/mode/html_highlight_rules"], function(acequire, exports, module) {
+ace.define("ace/mode/php_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules","ace/mode/html_highlight_rules","ace/mode/code_puzzle_highlight_rules"], function(acequire, exports, module) {
 "use strict";
 
 var oop = acequire("../lib/oop");
@@ -1088,6 +1026,7 @@ var lang = acequire("../lib/lang");
 var DocCommentHighlightRules = acequire("./doc_comment_highlight_rules").DocCommentHighlightRules;
 var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
 var HtmlHighlightRules = acequire("./html_highlight_rules").HtmlHighlightRules;
+
 
 var PhpLangHighlightRules = function() {
     var docComment = DocCommentHighlightRules;
@@ -1956,6 +1895,10 @@ var PhpLangHighlightRules = function() {
             {
                 token : "comment",
                 regex : /(?:#|\/\/)(?:[^?]|\?[^>])*/
+            },
+            {
+                token : "codepuzzlequestion",
+                regex : "qbutton"
             },
             docComment.getStartRule("doc-start"),
             {
