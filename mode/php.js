@@ -48,23 +48,6 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 
 });
 
-ace.define('ace/mode/code_puzzle', function(acequire, exports, module) {
-
-    var oop = acequire("ace/lib/oop");
-    var TextMode = acequire("ace/mode/text").Mode;
-    var CodePuzzleHighlightRules = require("ace/mode/code_puzzle_highlight_rules").CodePuzzleHighlightRules;
-
-    var Mode = function() {
-        this.HighlightRules = CodePuzzleHighlightRules;
-    };
-    oop.inherits(Mode, TextMode);
-
-    (function() {
-    }).call(Mode.prototype);
-
-    exports.Mode = Mode;
-});
-
 ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
     "use strict";
 
@@ -83,6 +66,23 @@ ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module",
     oop.inherits(CodePuzzleHighlightRules, TextHighlightRules);
     exports.CodePuzzleHighlightRules = CodePuzzleHighlightRules;
 
+});
+
+ace.define('ace/mode/code_puzzle', function(acequire, exports, module) {
+
+    var oop = acequire("ace/lib/oop");
+    var TextMode = acequire("ace/mode/text").Mode;
+    var CodePuzzleHighlightRules = acequire("./code_puzzle_highlight_rules").CodePuzzleHighlightRules;
+
+    var Mode = function() {
+        this.HighlightRules = CodePuzzleHighlightRules;
+    };
+    oop.inherits(Mode, TextMode);
+
+    (function() {
+    }).call(Mode.prototype);
+
+    exports.Mode = Mode;
 });
 
 ace.define("ace/mode/css_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
