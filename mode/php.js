@@ -68,7 +68,7 @@ ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module",
 
 });
 
-ace.define("ace/mode/code_puzzle",['require', 'exports', 'ace/lib/oop', 'ace/mode/text', 'ace/mode/custom_highlight_rules'], function(acequire, exports, module) {
+ace.define("ace/mode/code_puzzle",['require', 'exports', 'ace/lib/oop', 'ace/mode/text', 'ace/mode/code_puzzle_highlight_rules'], function(acequire, exports, module) {
 
     var oop = acequire("ace/lib/oop");
     var TextMode = acequire("ace/mode/text").Mode;
