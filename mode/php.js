@@ -75,7 +75,7 @@ ace.define('ace/mode/code_puzzle', function(acequire, exports, module) {
     var CodePuzzleHighlightRules = acequire("./code_puzzle_highlight_rules").CodePuzzleHighlightRules;
 
     var Mode = function() {
-        this.HighlightRules = CodePuzzleHighlightRules;
+        var highlighter = new CodePuzzleHighlightRules();
     };
     oop.inherits(Mode, TextMode);
 
