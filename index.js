@@ -2823,6 +2823,7 @@ function DefaultHandlers(mouseHandler) {
     mouseHandler.$clickSelection = null;
 
     var editor = mouseHandler.editor;
+    editor.setDefaultHandler("mouseclick", this.onMouseClick.bind(mouseHanlder));
     editor.setDefaultHandler("mousedown", this.onMouseDown.bind(mouseHandler));
     editor.setDefaultHandler("dblclick", this.onDoubleClick.bind(mouseHandler));
     editor.setDefaultHandler("tripleclick", this.onTripleClick.bind(mouseHandler));
@@ -2843,6 +2844,9 @@ function DefaultHandlers(mouseHandler) {
 
 (function() {
 
+    this.onMouseClick = function(ev){
+        console.log(ev);
+    }
     this.onMouseDown = function(ev) {
         var inSelection = ev.inSelection();
         var pos = ev.getDocumentPosition();
