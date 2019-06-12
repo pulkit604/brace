@@ -48,11 +48,11 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 
 });
 
-ace.define('ace/mode/code_puzzle', function(acequire, exports, module) {
+ace.define("ace/mode/code_puzzle",['require', 'exports', 'ace/lib/oop', 'ace/mode/text', 'ace/mode/custom_highlight_rules'], function(acequire, exports, module) {
 
-    var oop = acequire("ace/lib/oop");
+    var oop = acequire("../lib/oop");
     var TextMode = acequire("ace/mode/text").Mode;
-    var CodePuzzleHighlightRules = acequire("ace/mode/code_puzzle_highlight_rules").CodePuzzleHighlightRules;
+    var CodePuzzleHighlightRules = acequire("./code_puzzle_highlight_rules").CodePuzzleHighlightRules;
     
     oop.inherits(Mode, TextMode);
     exports.Mode = Mode;
