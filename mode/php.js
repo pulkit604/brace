@@ -48,26 +48,6 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 
 });
 
-ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
-    "use strict";
-
-    var oop = acequire("ace/lib/oop");
-    var TextHighlightRules = acequire("ace/mode/text_highlight_rules").TextHighlightRules;
-
-    var CodePuzzleHighlightRules = function() {
-        this.$rules = {
-            "start" : [{
-                token: "codepuzzlequestion",
-                regex: "qbutton"
-            }]
-        };
-    };
-
-    oop.inherits(CodePuzzleHighlightRules, TextHighlightRules);
-    exports.CodePuzzleHighlightRules = CodePuzzleHighlightRules;
-
-});
-
 ace.define("ace/mode/css_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
 "use strict";
 
