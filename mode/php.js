@@ -1029,7 +1029,7 @@ oop.inherits(HtmlHighlightRules, XmlHighlightRules);
 exports.HtmlHighlightRules = HtmlHighlightRules;
 });
 
-ace.define("ace/mode/php_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules","ace/mode/html_highlight_rules"], function(acequire, exports, module) {
+ace.define("ace/mode/php_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules","ace/mode/html_highlight_rules","ace/mode/code_puzzle_highlight_rules"], function(acequire, exports, module) {
 "use strict";
 
 var oop = acequire("../lib/oop");
@@ -1037,6 +1037,7 @@ var lang = acequire("../lib/lang");
 var DocCommentHighlightRules = acequire("./doc_comment_highlight_rules").DocCommentHighlightRules;
 var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
 var HtmlHighlightRules = acequire("./html_highlight_rules").HtmlHighlightRules;
+var CodePuzzleHighlightRules = acequire('ace/mode/code_puzzle_highlight_rules').CodePuzzleHighlightRules;
 
 var PhpLangHighlightRules = function() {
     var docComment = DocCommentHighlightRules;
