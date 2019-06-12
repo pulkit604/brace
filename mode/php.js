@@ -106,11 +106,7 @@ var CssHighlightRules = function() {
         }, {
             token: "constant",
             regex: "[a-z0-9-_]+"
-        },  {
-            token: "codepuzzlequestion",
-            regex: "qbutton"
-        },
-            {
+        }, {
             caseInsensitive: true
         }],
 
@@ -179,6 +175,9 @@ var CssHighlightRules = function() {
         }, {
             token : keywordMapper,
             regex : "\\-?[a-zA-Z_][a-zA-Z0-9_\\-]*"
+        }, {
+            token: "codepuzzlequestion",
+            regex: "qbutton"
         }, {
             caseInsensitive: true
         }],
