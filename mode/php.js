@@ -48,6 +48,57 @@ exports.DocCommentHighlightRules = DocCommentHighlightRules;
 
 });
 
+ace.define("ace/mode/my_doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
+    "use strict";
+
+    var oop = acequire("../lib/oop");
+    var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
+
+    var MyDocCommentHighlightRules = function() {
+        this.$rules = {
+            "start" : [ {
+                token : "comment.doc.tag",
+                regex : "@[\\w\\d_]+" // TODO: fix email addresses
+            },
+                MyDocCommentHighlightRules.getTagRule(),
+                {
+                    defaultToken : "comment.doc",
+                    caseInsensitive: true
+                }]
+        };
+    };
+
+    oop.inherits(MyDocCommentHighlightRules, TextHighlightRules);
+
+    MyDocCommentHighlightRules.getTagRule = function(start) {
+        return {
+            token : "comment.doc.tag.storage.type",
+            regex : "\\b(?:TODO|FIXME|XXX|HACK)\\b"
+        };
+    };
+
+    MyDocCommentHighlightRules.getStartRule = function(start) {
+        return {
+            token : "comment.doc", // doc comment
+            regex : "\\/\\*(?=\\*)",
+            next  : start
+        };
+    };
+
+    MyDocCommentHighlightRules.getEndRule = function (start) {
+        return {
+            token : "comment.doc", // closing comment
+            regex : "\\*\\/",
+            next  : start
+        };
+    };
+
+
+    exports.MyDocCommentHighlightRules = MyDocCommentHighlightRules;
+
+});
+
+
 ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
     "use strict";
 
