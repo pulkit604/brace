@@ -64,7 +64,7 @@ ace.define("ace/mode/code_puzzle_highlight_rules",["require","exports","module",
     };
 
     oop.inherits(CodePuzzleHighlightRules, TextHighlightRules);
-    exports.CodePuzzletHighlightRules = CodePuzzleHighlightRules;
+    exports.CodePuzzleHighlightRules = CodePuzzleHighlightRules;
 
 });
 
