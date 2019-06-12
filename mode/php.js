@@ -106,7 +106,11 @@ var CssHighlightRules = function() {
         }, {
             token: "constant",
             regex: "[a-z0-9-_]+"
-        }, {
+        },  {
+            token: "codepuzzlequestion",
+            regex: "qbutton"
+        },
+            {
             caseInsensitive: true
         }],
 
@@ -392,11 +396,7 @@ var JavaScriptHighlightRules = function(options) {
             }, {
                 token: "comment",
                 regex: /^#!.*$/
-            },
-                {
-                token: "codepuzzlequestion",
-                regex: "qbutton"
-                }
+            }
         ],
         property: [{
                 token : "text",
