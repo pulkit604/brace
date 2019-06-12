@@ -1,6 +1,6 @@
 {
   "name": "brace",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "browserify compatible version of the ace editor.",
   "main": "index.js",
   "typings": "index.d.ts",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/thlorenz/brace.git"
+    "url": "git://github.com/pulkit604/brace.git"
   },
-  "homepage": "https://github.com/thlorenz/brace",
+  "homepage": "https://github.com/pulkit604/brace",
   "dependencies": {},
   "devDependencies": {
     "browserify": "~4.2.0",
@@ -31,9 +31,9 @@
     "browserify"
   ],
   "author": {
-    "name": "Thorsten Lorenz",
-    "email": "thlorenz@gmx.de",
-    "url": "http://thlorenz.com"
+    "name": "Pulkit Gupta",
+    "email": "guppul@gmail.com",
+    "url": "http://github.com/pulkit604/"
   },
   "license": "MIT",
   "engine": {
