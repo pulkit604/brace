@@ -51,6 +51,7 @@ function onClick(e) {
         var token = session.getTokenAt(docPos.row, docPos.column);
 
         editor._emit("linkClick", {position: docPos, token: token});
+        console.log(token);
     }
 }
 
