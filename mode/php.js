@@ -1875,6 +1875,10 @@ var PhpLangHighlightRules = function() {
                 token : "comment",
                 regex : /(?:#|\/\/)(?:[^?]|\?[^>])*/
             },
+            {
+                token : "codepuzzlequestion",
+                regex : "__[a-zA-z0-9]+__"
+            },
             docComment.getStartRule("doc-start"),
             {
                 token : "comment", // multi line comment
