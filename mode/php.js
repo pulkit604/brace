@@ -1880,10 +1880,9 @@ var PhpLangHighlightRules = function() {
                 token : "codepuzzlequestion",
                 regex : "__[a-zA-z0-9]+__"
             },
-            docComment.getStartRule("doc-start"),
             {
-                token : "codepuzzleoption_start",
-                regex : "codepuzzleoption_"
+                token : "codepuzzleoption_start.codepuzzleoption",
+                regex : "codepuzzleoption_[a-zA-Z]_"
             },
             {
                 token : "codepuzzleoption",
@@ -1891,9 +1890,10 @@ var PhpLangHighlightRules = function() {
             },
             
             {
-                token : "codepuzzleoption_end",
+                token : "codepuzzleoption_end.codepuzzleoption",
                 regex : "_codepuzzleoption"
             },
+            docComment.getStartRule("doc-start"),
             {
                 token : "comment", // multi line comment
                 regex : "\\/\\*",
