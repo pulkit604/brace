@@ -1882,7 +1882,7 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzleoption",
-                regex : /^codepuzzleoption_[a-zA-Z]_.*_codepuzzleoption$/g
+                regex : "codepuzzleoption_[a-zA-Z]_.*_codepuzzleoption"
             },
             docComment.getStartRule("doc-start"),
             {
