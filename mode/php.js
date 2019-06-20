@@ -1881,7 +1881,7 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzleoption",
-                regex : "codepuzzleoption_[a-zA-Z]_[a-zA-Z0-9]+_codepuzzleoption"
+                regex : "^codepuzzleoption_[a-zA-Z]_.*_codepuzzleoption$"
             },
             docComment.getStartRule("doc-start"),
             {
