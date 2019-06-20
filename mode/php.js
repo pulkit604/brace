@@ -1,4 +1,4 @@
-ace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
+cace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
 "use strict";
 
 var oop = acequire("../lib/oop");
@@ -1880,6 +1880,7 @@ var PhpLangHighlightRules = function() {
                 token : "codepuzzlequestion",
                 regex : "__[a-zA-z0-9]+__"
             },
+            docComment.getStartRule("doc-start"),
             {
                 token : "codepuzzleoption_start",
                 regex : "codepuzzleoption_"
@@ -1893,7 +1894,6 @@ var PhpLangHighlightRules = function() {
                 token : "codepuzzleoption_end",
                 regex : "_codepuzzleoption"
             },
-            docComment.getStartRule("doc-start"),
             {
                 token : "comment", // multi line comment
                 regex : "\\/\\*",
