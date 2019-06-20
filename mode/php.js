@@ -1881,10 +1881,6 @@ var PhpLangHighlightRules = function() {
                 regex : "__[a-zA-z0-9]+__"
             },
             {
-                token : "codepuzzleoption_start.codepuzzleoption",
-                regex : "codepuzzleoption_[a-zA-Z]_"
-            },
-            {
                 token : "codepuzzleoption",
                 regex : "codepuzzleoption_[a-zA-Z]_((?!_codepuzzleoption).)*_codepuzzleoption"
             },
@@ -2054,11 +2050,7 @@ var PhpHighlightRules = function() {
             token : "support.php_tag", // php close tag
             regex : "\\?>",
             next  : "pop"
-        },
-        {
-            token : "codepuzzleoption_end.codepuzzleoption",
-            regex : "_codepuzzleoption"
-        },
+        }
     ];
 
     for (var key in this.$rules)
