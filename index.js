@@ -21588,7 +21588,7 @@ ace.define("ace/ace",["acequire","exports","module","ace/lib/fixoldbrowsers","ac
     exports.VirtualRenderer = Renderer;
     exports.version = exports.config.version;
 });            (function() {
-    window.acequire(["ace/ace"], function(a) {
+    window.require(["ace/ace"], function(a) {
         if (a) {
             a.config.init(true);
             a.define = window.define;
