@@ -1345,23 +1345,23 @@ ace.define("ace/lib/useragent",["require","exports","module"], function(acequire
             return exports.OS.WINDOWS;
         }
     };
-    if (typeof navigator != "object")
-        return;
+    var _navigator = typeof navigator == "object" ? navigator : {};
 
-    var os = (navigator.platform.match(/mac|win|linux/i) || ["other"])[0].toLowerCase();
-    var ua = navigator.userAgent;
+    var os = (/mac|win|linux/i.exec(_navigator.platform) || ["other"])[0].toLowerCase();
+    var ua = navigator.userAgent;	var ua = _navigator.userAgent || "";
+    var appName = _navigator.appName || "";
     exports.isWin = (os == "win");
     exports.isMac = (os == "mac");
     exports.isLinux = (os == "linux");
     exports.isIE =
-        (navigator.appName == "Microsoft Internet Explorer" || navigator.appName.indexOf("MSAppHost") >= 0)
+        (appName == "Microsoft Internet Explorer" || appName.indexOf("MSAppHost") >= 0)
             ? parseFloat((ua.match(/(?:MSIE |Trident\/[0-9]+[\.0-9]+;.*rv:)([0-9]+[\.0-9]+)/)||[])[1])
             : parseFloat((ua.match(/(?:Trident\/[0-9]+[\.0-9]+;.*rv:)([0-9]+[\.0-9]+)/)||[])[1]); // for ie
 
     exports.isOldIE = exports.isIE && exports.isIE < 9;
     exports.isGecko = exports.isMozilla = (window.Controllers || window.controllers) && window.navigator.product === "Gecko";
     exports.isOldGecko = exports.isGecko && parseInt((ua.match(/rv:(\d+)/)||[])[1], 10) < 4;
-    exports.isOpera = window.opera && Object.prototype.toString.call(window.opera) == "[object Opera]";
+    exports.isOpera = typeof opera == "object" && Object.prototype.toString.call(window.opera) == "[object Opera]";
     exports.isWebKit = parseFloat(ua.split("WebKit/")[1]) || undefined;
 
     exports.isChrome = parseFloat(ua.split(" Chrome/")[1]) || undefined;
@@ -1455,30 +1455,6 @@ ace.define("ace/lib/event",["require","exports","module","ace/lib/keys","ace/lib
         exports.addListener(document, "dragstart", onMouseUp, true);
 
         return onMouseUp;
-    };
-
-    exports.addTouchMoveListener = function (el, callback) {
-        var startx, starty;
-        exports.addListener(el, "touchstart", function (e) {
-            var touches = e.touches;
-            var touchObj = touches[0];
-            startx = touchObj.clientX;
-            starty = touchObj.clientY;
-        });
-        exports.addListener(el, "touchmove", function (e) {
-            var touches = e.touches;
-            if (touches.length > 1) return;
-
-            var touchObj = touches[0];
-
-            e.wheelX = startx - touchObj.clientX;
-            e.wheelY = starty - touchObj.clientY;
-
-            startx = touchObj.clientX;
-            starty = touchObj.clientY;
-
-            callback(e);
-        });
     };
 
     exports.addMouseWheelListener = function(el, callback) {
@@ -2279,16 +2255,14 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
             var left = rect.left + (parseInt(rect.borderLeftWidth) || 0);
             var maxTop = rect.bottom - top - text.clientHeight -2;
             var move = function(e) {
-                text.style.left = e.clientX - left - 2 + "px";
-                text.style.top = Math.min(e.clientY - top - 2, maxTop) + "px";
+                dom.translate(text, e.clientX - left - 2, Math.min(e.clientY - top - 2, maxTop));
             };
             move(e);
 
             if (e.type != "mousedown")
                 return;
 
-            if (host.renderer.$keepTextAreaAtCursor)
-                host.renderer.$keepTextAreaAtCursor = null;
+            host.renderer.$isMousePressed = true;
 
             clearTimeout(closeTimeout);
             if (useragent.isWin)
@@ -2304,10 +2278,9 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
                     text.style.cssText = tempStyle;
                     tempStyle = '';
                 }
-                if (host.renderer.$keepTextAreaAtCursor == null) {
-                    host.renderer.$keepTextAreaAtCursor = true;
+                host.renderer.$isMousePressed = false;
+                if (host.renderer.$keepTextAreaAtCursor)
                     host.renderer.$moveTextAreaToCursor();
-                }
             }, 0);
         }
 
@@ -2339,7 +2312,7 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
             });
             var detectArrowKeys = function(e) {
                 if (document.activeElement !== text) return;
-                if (typing) return;
+                if (typing || host.$mouseHandler.isMousePressed) return;
 
                 if (cut) {
                     return setTimeout(function () {
@@ -2828,7 +2801,6 @@ ace.define("ace/mouse/default_handlers",["require","exports","module","ace/lib/d
         editor.setDefaultHandler("tripleclick", this.onTripleClick.bind(mouseHandler));
         editor.setDefaultHandler("quadclick", this.onQuadClick.bind(mouseHandler));
         editor.setDefaultHandler("mousewheel", this.onMouseWheel.bind(mouseHandler));
-        editor.setDefaultHandler("touchmove", this.onTouchMove.bind(mouseHandler));
 
         var exports = ["select", "startSelect", "selectEnd", "selectAllEnd", "selectByWordsEnd",
             "selectByLinesEnd", "dragWait", "dragWaitEnd", "focusWait"];
@@ -3070,9 +3042,6 @@ ace.define("ace/mouse/default_handlers",["require","exports","module","ace/lib/d
             }
         };
 
-        this.onTouchMove = function(ev) {
-            this.editor._emit("mousewheel", ev);
-        };
 
     }).call(DefaultHandlers.prototype);
 
@@ -3471,7 +3440,7 @@ ace.define("ace/mouse/dragdrop_handler",["require","exports","module","ace/lib/d
                 var dropEffect = e.dataTransfer.dropEffect;
                 if (!dragOperation && dropEffect == "move")
                     editor.session.remove(editor.getSelectionRange());
-                editor.renderer.$cursorLayer.setBlinking(true);
+                editor.$resetCursorStyle();
             }
             this.editor.unsetStyle("ace_dragging");
             this.editor.renderer.setCursorStyle("");
@@ -3640,7 +3609,7 @@ ace.define("ace/mouse/dragdrop_handler",["require","exports","module","ace/lib/d
             editor.selection.fromOrientedRange(range);
             editor.$blockScrolling -= 1;
             if (editor.isFocused() && !isInternal)
-                editor.renderer.$cursorLayer.setBlinking(!editor.getReadOnly());
+                editor.$resetCursorStyle();
             range = null;
             dragCursor = null;
             counter = 0;
@@ -3703,7 +3672,7 @@ ace.define("ace/mouse/dragdrop_handler",["require","exports","module","ace/lib/d
         };
 
         this.dragReadyEnd = function(e) {
-            this.editor.renderer.$cursorLayer.setBlinking(!this.editor.getReadOnly());
+            this.editor.$resetCursorStyle();
             this.editor.unsetStyle("ace_dragging");
             this.editor.renderer.setCursorStyle("");
             this.dragWaitEnd();
@@ -3776,6 +3745,209 @@ ace.define("ace/mouse/dragdrop_handler",["require","exports","module","ace/lib/d
     }
 
     exports.DragdropHandler = DragdropHandler;
+
+});
+
+ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mouse_event"], function(acequire, exports, module) {
+    "use strict";
+
+    var MouseEvent = acequire("./mouse_event").MouseEvent;
+
+    exports.addTouchListeners = function(el, editor) {
+        var mode = "scroll";
+        var startX;
+        var startY;
+        var touchStartT;
+        var lastT;
+        var longTouchTimer;
+        var animationTimer;
+        var animationSteps = 0;
+        var pos;
+        var clickCount = 0;
+        var vX = 0;
+        var vY = 0;
+        var pressed;
+        function handleLongTap() {
+            longTouchTimer = null;
+            clearTimeout(longTouchTimer);
+            if (editor.selection.isEmpty())
+                editor.selection.moveToPosition(pos);
+            mode = "wait";
+        }
+        function switchToSelectionMode() {
+            longTouchTimer = null;
+            clearTimeout(longTouchTimer);
+            editor.selection.moveToPosition(pos);
+            var range = clickCount >= 2
+                ? editor.selection.getLineRange(pos.row)
+                : editor.session.getBracketRange(pos);
+            if (range && !range.isEmpty()) {
+                editor.selection.setRange(range);
+            } else {
+                editor.selection.selectWord();
+            }
+            mode = "wait";
+        }
+        el.addEventListener("contextmenu", function(e) {
+            if (!pressed) return;
+            var textarea = editor.textInput.getElement();
+            textarea.focus();
+        });
+        el.addEventListener("touchstart", function (e) {
+            var touches = e.touches;
+            if (longTouchTimer || touches.length > 1) {
+                clearTimeout(longTouchTimer);
+                longTouchTimer = null;
+                mode = "zoom";
+                return;
+            }
+
+            pressed = editor.$mouseHandler.isMousePressed = true;
+            var touchObj = touches[0];
+            startX = touchObj.clientX;
+            startY = touchObj.clientY;
+            vX = vY = 0;
+
+            e.clientX = touchObj.clientX;
+            e.clientY = touchObj.clientY;
+
+            var t = e.timeStamp;
+            lastT = t;
+
+            var ev = new MouseEvent(e, editor);
+            pos = ev.getDocumentPosition();
+
+            if (t - touchStartT < 500 && touches.length == 1 && !animationSteps) {
+                clickCount++;
+                e.preventDefault();
+                e.button = 0;
+                switchToSelectionMode();
+            } else {
+                clickCount = 0;
+                longTouchTimer = setTimeout(handleLongTap, 450);
+                var cursor = editor.selection.cursor;
+                var anchor = editor.selection.isEmpty() ? cursor : editor.selection.anchor;
+
+                var cursorPos = editor.renderer.$cursorLayer.getPixelPosition(cursor, true);
+                var anchorPos = editor.renderer.$cursorLayer.getPixelPosition(anchor, true);
+                var rect = editor.renderer.scroller.getBoundingClientRect();
+                var h = editor.renderer.layerConfig.lineHeight;
+                var w = editor.renderer.layerConfig.lineHeight;
+                var weightedDistance = function(x, y) {
+                    x = x / w;
+                    y = y / h - 0.75;
+                    return x * x + y * y;
+                };
+
+                var diff1 = weightedDistance(
+                    e.clientX - rect.left - cursorPos.left,
+                    e.clientY - rect.top - cursorPos.top
+                );
+                var diff2 = weightedDistance(
+                    e.clientX - rect.left - anchorPos.left,
+                    e.clientY - rect.top - anchorPos.top
+                );
+                if (diff1 < 3.5 && diff2 < 3.5)
+                    mode = diff1 > diff2 ? "cursor" : "anchor";
+
+                if (diff2 < 3.5)
+                    mode = "anchor";
+                else if (diff1 < 3.5)
+                    mode = "cursor";
+                else
+                    mode = "scroll";
+            }
+            touchStartT = t;
+        });
+
+        el.addEventListener("touchend", function (e) {
+            pressed = editor.$mouseHandler.isMousePressed = false;
+            if (animationTimer) clearInterval(animationTimer);
+            if (mode == "zoom") {
+                mode = "";
+                animationSteps = 0;
+            } else if (longTouchTimer) {
+                editor.selection.moveToPosition(pos);
+                animationSteps = 0;
+            } else if (mode == "scroll") {
+                animate();
+                e.preventDefault();
+            }
+            clearTimeout(longTouchTimer);
+            longTouchTimer = null;
+        });
+        el.addEventListener("touchmove", function (e) {
+            if (longTouchTimer) {
+                clearTimeout(longTouchTimer);
+                longTouchTimer = null;
+            }
+            var touches = e.touches;
+            if (touches.length > 1 || mode == "zoom") return;
+
+            var touchObj = touches[0];
+
+            var wheelX = startX - touchObj.clientX;
+            var wheelY = startY - touchObj.clientY;
+
+            if (mode == "wait") {
+                if (wheelX * wheelX + wheelY * wheelY > 4)
+                    mode = "cursor";
+                else
+                    return e.preventDefault();
+            }
+
+            startX = touchObj.clientX;
+            startY = touchObj.clientY;
+
+            e.clientX = touchObj.clientX;
+            e.clientY = touchObj.clientY;
+
+            var t = e.timeStamp;
+            var dt = t - lastT;
+            lastT = t;
+            if (mode == "scroll") {
+                var mouseEvent = new MouseEvent(e, editor);
+                mouseEvent.speed = 1;
+                mouseEvent.wheelX = wheelX;
+                mouseEvent.wheelY = wheelY;
+                if (10 * Math.abs(wheelX) < Math.abs(wheelY)) wheelX = 0;
+                if (10 * Math.abs(wheelY) < Math.abs(wheelX)) wheelY = 0;
+                if (dt != 0) {
+                    vX = wheelX / dt;
+                    vY = wheelY / dt;
+                }
+                editor._emit("mousewheel", mouseEvent);
+                if (!mouseEvent.propagationStopped) {
+                    vX = vY = 0;
+                }
+            }
+            else {
+                var ev = new MouseEvent(e, editor);
+                var pos = ev.getDocumentPosition();
+                if (mode == "cursor")
+                    editor.selection.moveCursorToPosition(pos);
+                else if (mode == "anchor")
+                    editor.selection.setSelectionAnchor(pos.row, pos.column);
+                editor.renderer.scrollCursorIntoView(pos);
+                e.preventDefault();
+            }
+        });
+
+        function animate() {
+            animationSteps += 60;
+            animationTimer = setInterval(function() {
+                if (animationSteps-- <= 0) {
+                    clearInterval(animationTimer);
+                    animationTimer = null;
+                }
+                if (Math.abs(vX) < 0.01) vX = 0;
+                if (Math.abs(vY) < 0.01) vY = 0;
+                if (animationSteps < 20) vX = 0.9 * vX;
+                if (animationSteps < 20) vY = 0.9 * vY;
+                editor.renderer.scrollBy(10 * vX, 10 * vY);
+            }, 10);
+        }
+    };
 
 });
 
@@ -4230,7 +4402,7 @@ ace.define("ace/config",["require","exports","module","ace/lib/lang","ace/lib/oo
 
 });
 
-ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/event","ace/lib/useragent","ace/mouse/default_handlers","ace/mouse/default_gutter_handler","ace/mouse/mouse_event","ace/mouse/dragdrop_handler","ace/config"], function(acequire, exports, module) {
+ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/event","ace/lib/useragent","ace/mouse/default_handlers","ace/mouse/default_gutter_handler","ace/mouse/mouse_event","ace/mouse/dragdrop_handler","ace/mouse/touch_handler","ace/config"], function(acequire, exports, module) {
     "use strict";
 
     var event = acequire("../lib/event");
@@ -4239,6 +4411,7 @@ ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/even
     var DefaultGutterHandler = acequire("./default_gutter_handler").GutterHandler;
     var MouseEvent = acequire("./mouse_event").MouseEvent;
     var DragdropHandler = acequire("./dragdrop_handler").DragdropHandler;
+    var addTouchListeners = acequire("./touch_handler").addTouchListeners;
     var config = acequire("../config");
 
     var MouseHandler = function(editor) {
@@ -4267,7 +4440,7 @@ ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/even
             editor.textInput && editor.textInput.getElement()
         ].filter(Boolean), [400, 300, 250], this, "onMouseEvent");
         event.addMouseWheelListener(editor.container, this.onMouseWheel.bind(this, "mousewheel"));
-        event.addTouchMoveListener(editor.container, this.onTouchMove.bind(this, "touchmove"));
+        addTouchListeners(editor.container, editor);
 
         var gutterEl = editor.renderer.$gutter;
         event.addListener(gutterEl, "mousedown", this.onMouseEvent.bind(this, "guttermousedown"));
@@ -4320,14 +4493,6 @@ ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/even
             this.editor._emit(name, mouseEvent);
         };
 
-        this.onTouchMove = function (name, e) {
-            var mouseEvent = new MouseEvent(e, this.editor);
-            mouseEvent.speed = 1;//this.$scrollSpeed * 2;
-            mouseEvent.wheelX = e.wheelX;
-            mouseEvent.wheelY = e.wheelY;
-            this.editor._emit(name, mouseEvent);
-        };
-
         this.setState = function(state) {
             this.state = state;
         };
@@ -4338,8 +4503,7 @@ ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/even
 
             this.isMousePressed = true;
             var renderer = this.editor.renderer;
-            if (renderer.$keepTextAreaAtCursor)
-                renderer.$keepTextAreaAtCursor = null;
+            renderer.$isMousePressed = true;
 
             var self = this;
             var onMouseMove = function(e) {
@@ -4359,11 +4523,9 @@ ace.define("ace/mouse/mouse_handler",["require","exports","module","ace/lib/even
                 onCaptureInterval();
                 self[self.state + "End"] && self[self.state + "End"](e);
                 self.state = "";
-                if (renderer.$keepTextAreaAtCursor == null) {
-                    renderer.$keepTextAreaAtCursor = true;
+                self.isMousePressed = renderer.$isMousePressed = false;
+                if (renderer.$keepTextAreaAtCursor)
                     renderer.$moveTextAreaToCursor();
-                }
-                self.isMousePressed = false;
                 self.$onCaptureMouseMove = self.releaseMouse = null;
                 e && self.onMouseEvent("mouseup", e);
             };
@@ -16797,7 +16959,7 @@ left: -100000px !important;\
         this.updateCharacterSize();
         this.setPadding(4);
         config.resetOptions(this);
-        config._emit("renderer", this);
+        config._signal("renderer", this);
     };
 
     (function() {
