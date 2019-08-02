@@ -4282,9 +4282,7 @@ var options = {
     themePath: null,
     basePath: "",
     suffix: ".js",
-    $moduleUrls: {},
-    loadWorkerFromBlob: true,
-    sharedPopups: false
+    $moduleUrls: {}
 };
 
 exports.get = function(key) {
