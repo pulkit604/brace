@@ -21586,21 +21586,17 @@ ace.define("ace/ace",["acequire","exports","module","ace/lib/fixoldbrowsers","ac
     exports.EditSession = EditSession;
     exports.UndoManager = UndoManager;
     exports.VirtualRenderer = Renderer;
-    exports.version = exports.config.version;
+    exports.version = "1.4.5";
 });            (function() {
-    window.ace.acequire(["ace/ace"], function(a) {
+    ace.acequire(["ace/ace"], function(a) {
         if (a) {
             a.config.init(true);
-            a.define = window.define;
+            a.define = ace.define;
         }
         if (!window.ace)
             window.ace = a;
         for (var key in a) if (a.hasOwnProperty(key))
             window.ace[key] = a[key];
-        window.ace["default"] = window.ace;
-        if (typeof module == "object" && typeof exports == "object" && module) {
-            module.exports = window.ace;
-        }
     });
 })();
-
+module.exports = window.ace.acequire("ace/ace");
