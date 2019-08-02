@@ -1,5 +1,6 @@
 module.exports.id = 'ace/mode/css_worker';
-module.exports.src ="\"no use strict\"!(function(window) {\n" +
+module.exports.src = "\"no use strict\";\n" +
+    "!(function(window) {\n" +
     "if (typeof window.window != \"undefined\" && window.document)\n" +
     "    return;\n" +
     "if (window.require && window.define)\n" +
@@ -8769,4 +8770,5 @@ module.exports.src ="\"no use strict\"!(function(window) {\n" +
     "    }\n" +
     "    return Object(o);\n" +
     "};\n" +
-    "\n"
+    "\n" +
+    "});";
