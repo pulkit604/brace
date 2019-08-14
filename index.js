@@ -3824,7 +3824,7 @@ ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mo
                 switchToSelectionMode();
             } else {
                 clickCount = 0;
-                longTouchTimer = setTimeout(handleLongTap, 250);
+                longTouchTimer = setTimeout(handleLongTap, 200);
                 var cursor = editor.selection.cursor;
                 var anchor = editor.selection.isEmpty() ? cursor : editor.selection.anchor;
 
@@ -3835,7 +3835,7 @@ ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mo
                 var w = editor.renderer.layerConfig.lineHeight;
                 var weightedDistance = function(x, y) {
                     x = x / w;
-                    y = y / h - 1.15;
+                    y = y / h - 0.85;
                     return x * x + y * y;
                 };
 
