@@ -3934,7 +3934,7 @@ ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mo
         });
 
         function animate() {
-            animationSteps += 60;
+            animationSteps += 70;
             animationTimer = setInterval(function() {
                 if (animationSteps-- <= 0) {
                     clearInterval(animationTimer);
