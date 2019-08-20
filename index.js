@@ -3934,7 +3934,7 @@ ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mo
         });
 
         function animate() {
-            animationSteps += 60;
+            animationSteps += 10;
             animationTimer = setInterval(function() {
                 if (animationSteps-- <= 0) {
                     clearInterval(animationTimer);
@@ -3945,7 +3945,7 @@ ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mo
                 if (animationSteps < 20) vX = 0.9 * vX;
                 if (animationSteps < 20) vY = 0.9 * vY;
                 editor.renderer.scrollBy(4 * vX, 4 * vY);
-            }, 6);
+            }, 2);
         }
     };
 
