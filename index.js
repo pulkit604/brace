@@ -3945,7 +3945,7 @@ ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mo
                 if (animationSteps < 10) vX = 0.9 * vX;
                 if (animationSteps < 10) vY = 0.9 * vY;
                 editor.renderer.scrollBy(4 * vX, 4 * vY);
-            }, 5);
+            }, 8);
         }
     };
 
