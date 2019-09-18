@@ -9,7 +9,7 @@ var DocCommentHighlightRules = function() {
         "start" : [ {
             token : "comment.doc.tag",
             regex : "@[\\w\\d_]+" // TODO: fix email addresses
-        }, c
+        },
         DocCommentHighlightRules.getTagRule(),
         {
             defaultToken : "comment.doc",
@@ -1886,7 +1886,7 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzleauto",  
-                regex : "____"
+                regex : "_____"
             },
             docComment.getStartRule("doc-start"),
             {
