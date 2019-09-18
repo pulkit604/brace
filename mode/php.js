@@ -9,7 +9,7 @@ var DocCommentHighlightRules = function() {
         "start" : [ {
             token : "comment.doc.tag",
             regex : "@[\\w\\d_]+" // TODO: fix email addresses
-        }, 
+        }, c
         DocCommentHighlightRules.getTagRule(),
         {
             defaultToken : "comment.doc",
@@ -1886,7 +1886,7 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzleauto",  
-                regex : "___"
+                regex : "_____"
             },
             docComment.getStartRule("doc-start"),
             {
@@ -12845,25 +12845,4 @@ oop.inherits(Mode, HtmlMode);
 (function() {
 
     this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], "ace/mode/php_worker", "PhpWorker");
-        worker.attachToDocument(session.getDocument());
-
-        if (this.inlinePhp)
-            worker.call("setOptions", [{inline: true}]);
-
-        worker.on("annotate", function(e) {
-            session.setAnnotations(e.data);
-        });
-
-        worker.on("terminate", function() {
-            session.clearAnnotations();
-        });
-
-        return worker;
-    };
-
-    this.$id = "ace/mode/php";
-}).call(Mode.prototype);
-
-exports.Mode = Mode;
-});
+        var worker = new WorkerClient(["ace"], "ace/mode/php_worker", "PhpWorker
