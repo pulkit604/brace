@@ -1886,7 +1886,7 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzleauto",  
-                regex : "_____"
+                regex : "____"
             },
             docComment.getStartRule("doc-start"),
             {
