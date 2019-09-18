@@ -12843,6 +12843,26 @@ var Mode = function(opts) {
 oop.inherits(Mode, HtmlMode);
 
 (function() {
+this.createWorker = function(session) {
+        var worker = new WorkerClient(["ace"], "ace/mode/php_worker", "PhpWorker");
+        worker.attachToDocument(session.getDocument());
 
-    this.createWorker = function(session) {
-        var worker = new WorkerClient(["ace"], "ace/mode/php_worker", "PhpWorker
+        if (this.inlinePhp)
+            worker.call("setOptions", [{inline: true}]);
+
+        worker.on("annotate", function(e) {
+            session.setAnnotations(e.data);
+        });
+
+        worker.on("terminate", function() {
+            session.clearAnnotations();
+        });
+
+        return worker;
+    };
+
+    this.$id = "ace/mode/php";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+});
