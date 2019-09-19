@@ -1561,7 +1561,7 @@ var Autocomplete = function() {
             if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet)
                 return detachIfFinished();
             if (this.autoInsert && filtered.length == 1 && results.finished)
-                return this.insertMatch(filtered[0]);
+                return this.insertMatch('codepuzzleoption_A_'+filtered[0]+'_codepuzzleoption');
 
             this.openPopup(this.editor, prefix, keepPopupPosition);
         }.bind(this));
