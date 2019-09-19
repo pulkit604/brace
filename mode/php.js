@@ -1890,7 +1890,7 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzleautoselected",  
-                regex : "_`*`_"
+                regex : "_`(.*)`_"
             },
             docComment.getStartRule("doc-start"),
             {
