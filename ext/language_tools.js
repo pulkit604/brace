@@ -1446,7 +1446,7 @@ var Autocomplete = function() {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.session.selection.clearSelection();
-                this.position = editor.getCursorPosition();
+                this.position = this.editor.getCursorPosition();
                 this.editor.session.addFold('', new range(this.position.row, this.position.column, this.position.row, this.position.column + 19));
                 this.editor.session.addFold('', new range(this.position.row, this.position.column + data.snippet.length + 19, this.position.row, this.position.column + data.snippet.length+ 36));
             }
