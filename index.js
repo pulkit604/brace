@@ -8812,6 +8812,7 @@ ace.define("ace/edit_session/fold",["require","exports","module","ace/range","ac
         this.range = range;
         this.start = range.start;
         this.end = range.end;
+        console.log(range);
 
         this.sameRow = range.start.row == range.end.row;
         this.subFolds = this.ranges = [];
