@@ -1280,7 +1280,7 @@ exports.getCompletionPrefix = function (editor) {
 
 });
 
-ace.define("ace/autocomplete",["require","exports","module","ace/keyboard/hash_handler","ace/autocomplete/popup","ace/autocomplete/util","ace/lib/event","ace/lib/lang","ace/lib/dom","ace/snippets"], function(acequire, exports, module) {
+ace.define("ace/autocomplete",["require","exports","module","ace/keyboard/hash_handler","ace/autocomplete/popup","ace/autocomplete/util","ace/lib/event","ace/lib/lang","ace/lib/dom","ace/snippets","ace/range"], function(acequire, exports, module) {
 "use strict";
 
 var HashHandler = acequire("./keyboard/hash_handler").HashHandler;
@@ -1290,6 +1290,7 @@ var event = acequire("./lib/event");
 var lang = acequire("./lib/lang");
 var dom = acequire("./lib/dom");
 var snippetManager = acequire("./snippets").snippetManager;
+var Range = acequire("../range").Range;
 
 var Autocomplete = function() {
     this.autoInsert = false;
@@ -1449,7 +1450,6 @@ var Autocomplete = function() {
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
                 var curr_col = position.column;
-                var Range = acequire("../range").Range;
                 this.editor.session.addFold('', new Range(curr_row, curr_col, curr_row, curr_col + 19));
                 this.editor.session.addFold('', new Range(curr_row, curr_col + data.snippet.length + 19, curr_row, curr_col + data.snippet.length+ 36));
             }
