@@ -1290,6 +1290,7 @@ var event = acequire("./lib/event");
 var lang = acequire("./lib/lang");
 var dom = acequire("./lib/dom");
 var snippetManager = acequire("./snippets").snippetManager;
+var Range = acequire("./range").Range;
 
 var Autocomplete = function() {
     this.autoInsert = false;
@@ -1792,7 +1793,7 @@ ace.define("ace/autocomplete/text_completer",["require","exports","module","ace/
     };
 });
 
-ace.define("ace/ext/language_tools",["require","exports","module","ace/snippets","ace/autocomplete","ace/config","ace/lib/lang","ace/autocomplete/util","ace/autocomplete/text_completer","ace/editor","ace/config"], function(acequire, exports, module) {
+ace.define("ace/ext/language_tools",["require","exports","module","ace/snippets","ace/autocomplete","ace/config","ace/lib/lang","ace/autocomplete/util","ace/autocomplete/text_completer","ace/editor","ace/config","ace/range"], function(acequire, exports, module) {
 "use strict";
 
 var snippetManager = acequire("../snippets").snippetManager;
@@ -1800,6 +1801,7 @@ var Autocomplete = acequire("../autocomplete").Autocomplete;
 var config = acequire("../config");
 var lang = acequire("../lib/lang");
 var util = acequire("../autocomplete/util");
+var Range = acequire("../range").Range;
 
 var textCompleter = acequire("../autocomplete/text_completer");
 var keyWordCompleter = {
