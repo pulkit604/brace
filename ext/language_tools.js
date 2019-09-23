@@ -1290,7 +1290,6 @@ var event = acequire("./lib/event");
 var lang = acequire("./lib/lang");
 var dom = acequire("./lib/dom");
 var snippetManager = acequire("./snippets").snippetManager;
-var Range = acequire("../range").Range;
 
 var Autocomplete = function() {
     this.autoInsert = false;
