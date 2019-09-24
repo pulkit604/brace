@@ -1523,11 +1523,12 @@ var Autocomplete = function() {
         editor.on("blur", this.blurListener);
         editor.on("mousedown", this.mousedownListener);
         editor.on("mousewheel", this.mousewheelListener);
-
+        console.log('debug4'+key);
         this.updateCompletions('', key);
     };
 
     this.updateCompletions = function(keepPopupPosition, key) {
+        console.log("debug5" + key);
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
@@ -1570,6 +1571,7 @@ var Autocomplete = function() {
             if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet)
                 return detachIfFinished();
             if (this.autoInsert && filtered.length == 1 && results.finished)
+                console.log('debug6::' + key);
                 return this.insertMatch(filtered[0],null,key);
 
             this.openPopup(this.editor, prefix, keepPopupPosition);
@@ -1669,6 +1671,7 @@ Autocomplete.startCommand = {
             editor.completer = new Autocomplete();
         editor.completer.autoInsert = false;
         editor.completer.autoSelect = true;
+        console.log('debug3'+arguments.key);
         editor.completer.showPopup(editor, arguments.key);
         editor.completer.cancelContextMenu();
     },
