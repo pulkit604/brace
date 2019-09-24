@@ -1444,7 +1444,8 @@ var Autocomplete = function() {
                 }
             }
             if (data.snippet) {
-                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet.replace('()','') + '_codepuzzleoption');
+                console.log(data.snippet.replace('()',''));
+                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
