@@ -1671,7 +1671,7 @@ Autocomplete.startCommand = {
         editor.completer.autoSelect = true;
         editor.completer.showPopup(editor);
         editor.completer.cancelContextMenu();
-        console.log('here'+arguments);
+        console.log(arguments);
     },
     bindKey: "Ctrl-Space|Ctrl-Shift-Space|Alt-Space"
 };
