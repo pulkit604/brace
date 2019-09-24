@@ -1447,6 +1447,7 @@ var Autocomplete = function() {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.session.selection.selectWord();
+                console.log(this.editor.selection.getRange());
                 var position = this.editor.selection.getCursor();
                 var curr_row = position.row;
                 var curr_col = position.column;
