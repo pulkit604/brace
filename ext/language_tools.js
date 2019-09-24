@@ -1446,11 +1446,10 @@ var Autocomplete = function() {
             if (data.snippet) {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
-                this.editor.session.selection.selectWordLeft();
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
                 var curr_col = position.column;
-                console.log(position);
+                console.log(this.editor.session.getTokenAt(curr_row, curr_col));
                 //this.editor.session.addFold('', new Range(curr_row, curr_col, curr_row, curr_col + 19));
                 //this.editor.session.addFold('', new Range(curr_row, curr_col + data.snippet.length + 19, curr_row, curr_col + data.snippet.length+ 36));
             }
