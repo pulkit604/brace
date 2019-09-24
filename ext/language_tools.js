@@ -1451,7 +1451,7 @@ var Autocomplete = function() {
                 var curr_col = position.column;
                 var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
                 this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
-                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data.snippet.length + 17, curr_row, curr_token.start + data.snippet.length+ 37));
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data.snippet.length + 17, curr_row, curr_token.start + data.snippet.length+ 35));
             }
             else
                 this.editor.execCommand("insertstring", data.value || data);
