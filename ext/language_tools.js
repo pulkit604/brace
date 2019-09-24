@@ -1801,7 +1801,7 @@ var Autocomplete = acequire("../autocomplete").Autocomplete;
 var config = acequire("../config");
 var lang = acequire("../lib/lang");
 var util = acequire("../autocomplete/util");
-var Range = acequire("./range").Range;
+var Range = acequire("../range").Range;
 
 var textCompleter = acequire("../autocomplete/text_completer");
 var keyWordCompleter = {
