@@ -906,7 +906,7 @@ var Editor = acequire("./editor").Editor;
 
 });
 
-ace.define("ace/autocomplete/popup",["require","exports","module","ace/virtual_renderer","ace/editor","ace/range","ace/lib/event","ace/lib/lang","ace/lib/dom"], function(acequire, exports, module) {
+ace.define("ace/autocomplete/popup",["require","exports","module","ace/virtual_renderer","ace/editor","ace/range","ace/lib/event","ace/lib/lang","ace/lib/dom","ace/range"], function(acequire, exports, module) {
 "use strict";
 
 var Renderer = acequire("../virtual_renderer").VirtualRenderer;
