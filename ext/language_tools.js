@@ -1444,10 +1444,7 @@ var Autocomplete = function() {
                 }
             }
             if (data.snippet) {
-                if(data.snippet.indexOf('()') > -1){
-                    data.snippet = data.snippet.replace('()','');
-                }
-                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
+                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet.replace('()','') + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
