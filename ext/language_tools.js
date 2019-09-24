@@ -911,7 +911,7 @@ ace.define("ace/autocomplete/popup",["require","exports","module","ace/virtual_r
 
 var Renderer = acequire("../virtual_renderer").VirtualRenderer;
 var Editor = acequire("../editor").Editor;
-var Range = acequire("./range").Range;
+var Range = acequire("../range").Range;
 var event = acequire("../lib/event");
 var lang = acequire("../lib/lang");
 var dom = acequire("../lib/dom");
