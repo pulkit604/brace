@@ -3945,7 +3945,7 @@ ace.define("ace/mouse/touch_handler",["require","exports","module","ace/mouse/mo
                 if (animationSteps < 10) vX = 0.9 * vX;
                 if (animationSteps < 10) vY = 0.9 * vY;
                 editor.renderer.scrollBy(4 * vX, 4 * vY);
-            }, 8);
+            }, 6);
         }
     };
 
@@ -8812,7 +8812,6 @@ ace.define("ace/edit_session/fold",["require","exports","module","ace/range","ac
         this.range = range;
         this.start = range.start;
         this.end = range.end;
-        console.log(range);
 
         this.sameRow = range.start.row == range.end.row;
         this.subFolds = this.ranges = [];
