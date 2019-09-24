@@ -1444,17 +1444,17 @@ var Autocomplete = function() {
                 }
             }
             if (data.snippet) {
-                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 if(data.snippet.indexOf('()') > -1){
                     data.snippet = data.snippet.replace('()','');
                 }
+                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
                 var curr_col = position.column;
                 var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
                 this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
-                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data.snippet.length + 17, curr_row, curr_token.start + data.snippet.length+ 35));
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data.snippet.length + 17, curr_row, curr_token.start + data.snippet.length+ 34));
             }
             else
                 this.editor.execCommand("insertstring", data.value || data);
