@@ -1447,10 +1447,9 @@ var Autocomplete = function() {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 this.editor.session.selection.selectWordLeft();
-                console.log(this.editor.selection.getRange());
-                var position = this.editor.selection.getCursor();
-                var curr_row = position.row;
-                var curr_col = position.column;
+                var position = this.editor.selection.getRange();
+                var curr_row = position.start.row;
+                var curr_col = position.start.column;
                 this.editor.session.addFold('', new Range(curr_row, curr_col, curr_row, curr_col + 19));
                 this.editor.session.addFold('', new Range(curr_row, curr_col + data.snippet.length + 19, curr_row, curr_col + data.snippet.length+ 36));
             }
