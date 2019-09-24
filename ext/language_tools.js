@@ -1445,6 +1445,9 @@ var Autocomplete = function() {
             }
             if (data.snippet) {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
+                if(data.snippet.indexOf('()') > -1){
+                    data.snippet = data.snippet.replace('()','');
+                }
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
