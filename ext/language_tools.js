@@ -1450,8 +1450,9 @@ var Autocomplete = function() {
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
                 var curr_col = position.column;
-                this.editor.session.addFold('', new Range(curr_row, curr_col, curr_row, curr_col + 19));
-                this.editor.session.addFold('', new Range(curr_row, curr_col + data.snippet.length + 19, curr_row, curr_col + data.snippet.length+ 36));
+                console.log(position);
+                //this.editor.session.addFold('', new Range(curr_row, curr_col, curr_row, curr_col + 19));
+                //this.editor.session.addFold('', new Range(curr_row, curr_col + data.snippet.length + 19, curr_row, curr_col + data.snippet.length+ 36));
             }
             else
                 this.editor.execCommand("insertstring", data.value || data);
