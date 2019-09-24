@@ -1427,7 +1427,7 @@ var Autocomplete = function() {
         this.popup.setRow(row);
     };
 
-    this.insertMatch = function(data, options) {
+    this.insertMatch = function(data, options, key) {
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
@@ -1444,7 +1444,7 @@ var Autocomplete = function() {
                 }
             }
             if (data.snippet) {
-                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
+                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
@@ -1506,7 +1506,7 @@ var Autocomplete = function() {
         return true;
     };
 
-    this.showPopup = function(editor) {
+    this.showPopup = function(editor, key) {
         if (this.editor)
             this.detach();
 
@@ -1524,10 +1524,10 @@ var Autocomplete = function() {
         editor.on("mousedown", this.mousedownListener);
         editor.on("mousewheel", this.mousewheelListener);
 
-        this.updateCompletions();
+        this.updateCompletions('', key);
     };
 
-    this.updateCompletions = function(keepPopupPosition) {
+    this.updateCompletions = function(keepPopupPosition, key) {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
@@ -1570,7 +1570,7 @@ var Autocomplete = function() {
             if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet)
                 return detachIfFinished();
             if (this.autoInsert && filtered.length == 1 && results.finished)
-                return this.insertMatch(filtered[0]);
+                return this.insertMatch(filtered[0],null,key);
 
             this.openPopup(this.editor, prefix, keepPopupPosition);
         }.bind(this));
@@ -1669,9 +1669,8 @@ Autocomplete.startCommand = {
             editor.completer = new Autocomplete();
         editor.completer.autoInsert = false;
         editor.completer.autoSelect = true;
-        editor.completer.showPopup(editor);
+        editor.completer.showPopup(editor, arguments.key);
         editor.completer.cancelContextMenu();
-        console.log(arguments);
     },
     bindKey: "Ctrl-Space|Ctrl-Shift-Space|Alt-Space"
 };
