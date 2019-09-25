@@ -1334,7 +1334,6 @@ var Autocomplete = function() {
 
     this.openPopup = function(editor, prefix, keepPopupPosition, key) {
         curr_key = key;
-        console.log(curr_key);
         if (!this.popup)
             this.$init();
 
@@ -1530,6 +1529,7 @@ var Autocomplete = function() {
     };
 
     this.updateCompletions = function(keepPopupPosition, key) {
+        curr_key = key;
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
