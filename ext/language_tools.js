@@ -1428,14 +1428,13 @@ var Autocomplete = function() {
     };
 
     this.insertMatch = function(data, options, key) {
-        console.log('debug1'+key);
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
             return false;
 
         if (data.completer && data.completer.insertMatch) {
-            data.completer.insertMatch(this.editor, data);
+            data.completer.insertMatch(this.editor, data, key);
         } else {
             if (this.completions.filterText) {
                 var ranges = this.editor.selection.getAllRanges();
