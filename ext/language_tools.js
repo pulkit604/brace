@@ -1334,6 +1334,7 @@ var Autocomplete = function() {
 
     this.openPopup = function(editor, prefix, keepPopupPosition, key) {
         curr_key = key;
+        console.log(curr_key);
         if (!this.popup)
             this.$init();
 
