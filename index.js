@@ -20407,6 +20407,7 @@ ace.define("ace/ace",["require","exports","module","ace/lib/fixoldbrowsers","ace
             env.editor.container.env = null; // prevent memory leak on old ie
         });
         editor.container.env = editor.env = env;
+        editor.auto_answers = [];
         return editor;
     };
     exports.createEditSession = function(text, mode) {
