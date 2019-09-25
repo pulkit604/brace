@@ -1332,8 +1332,7 @@ var Autocomplete = function() {
         return this.popup || this.$init();
     };
 
-    this.openPopup = function(editor, prefix, keepPopupPosition, key) {
-        curr_key = key;
+    this.openPopup = function(editor, prefix, keepPopupPosition) {
         if (!this.popup)
             this.$init();
 
@@ -1508,7 +1507,7 @@ var Autocomplete = function() {
         return true;
     };
 
-    this.showPopup = function(editor, key) {
+    this.showPopup = function(editor) {
         if (this.editor)
             this.detach();
 
@@ -1525,10 +1524,10 @@ var Autocomplete = function() {
         editor.on("blur", this.blurListener);
         editor.on("mousedown", this.mousedownListener);
         editor.on("mousewheel", this.mousewheelListener);
-        this.updateCompletions('', key);
+        this.updateCompletions(;
     };
 
-    this.updateCompletions = function(keepPopupPosition, key) {
+    this.updateCompletions = function(keepPopupPosition) {
         curr_key = key;
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
@@ -1542,7 +1541,7 @@ var Autocomplete = function() {
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
                 return this.detach();
-            this.openPopup(this.editor, prefix, keepPopupPosition, key);
+            this.openPopup(this.editor, prefix, keepPopupPosition);
             return;
         }
         var _id = this.gatherCompletionsId;
@@ -1574,7 +1573,7 @@ var Autocomplete = function() {
             if (this.autoInsert && filtered.length == 1 && results.finished)
                 return this.insertMatch(filtered[0]);
 
-            this.openPopup(this.editor, prefix, keepPopupPosition, key);
+            this.openPopup(this.editor, prefix, keepPopupPosition);
         }.bind(this));
     };
 
@@ -1671,7 +1670,8 @@ Autocomplete.startCommand = {
             editor.completer = new Autocomplete();
         editor.completer.autoInsert = false;
         editor.completer.autoSelect = true;
-        editor.completer.showPopup(editor, arguments[1].key);
+        editor.completer.showPopup(editor);
+        curr_key = arguments[1].key;
         editor.completer.cancelContextMenu();
     },
     bindKey: "Ctrl-Space|Ctrl-Shift-Space|Alt-Space"
