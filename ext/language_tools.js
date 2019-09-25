@@ -1331,7 +1331,7 @@ var Autocomplete = function() {
         return this.popup || this.$init();
     };
 
-    this.openPopup = function(editor, prefix, keepPopupPosition) {
+    this.openPopup = function(editor, prefix, keepPopupPosition, key) {
         if (!this.popup)
             this.$init();
 
@@ -1428,6 +1428,7 @@ var Autocomplete = function() {
     };
 
     this.insertMatch = function(data, options, key) {
+        console.log('debug1'+key);
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
@@ -1570,8 +1571,8 @@ var Autocomplete = function() {
                 return detachIfFinished();
             if (this.autoInsert && filtered.length == 1 && results.finished)
                 return this.insertMatch(filtered[0]);
-            console.log('hrere');exit;
-            this.openPopup(this.editor, prefix, keepPopupPosition);
+
+            this.openPopup(this.editor, prefix, keepPopupPosition, key);
         }.bind(this));
     };
 
