@@ -1671,7 +1671,9 @@ Autocomplete.startCommand = {
             editor.completer = new Autocomplete();
         editor.completer.autoInsert = false;
         editor.completer.autoSelect = true;
-        console.log('debug3'+arguments.key);
+        console.log('debug3');
+        console.log(arguments);
+        console.log(arguments.key);
         editor.completer.showPopup(editor, arguments.key);
         editor.completer.cancelContextMenu();
     },
