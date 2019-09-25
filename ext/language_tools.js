@@ -1453,6 +1453,7 @@ var Autocomplete = function() {
                 var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
                 this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
                 this.editor.session.addFold('', new Range(curr_row, curr_token.start + data.snippet.length + 15, curr_row, curr_token.start + data.snippet.length+ 32));
+                this.editor.auto_answers[0] = data.snippet;
             }
             else
                 this.editor.execCommand("insertstring", data.value || data);
