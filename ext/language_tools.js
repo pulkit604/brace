@@ -1524,7 +1524,7 @@ var Autocomplete = function() {
         editor.on("blur", this.blurListener);
         editor.on("mousedown", this.mousedownListener);
         editor.on("mousewheel", this.mousewheelListener);
-        this.updateCompletions(;
+        this.updateCompletions();
     };
 
     this.updateCompletions = function(keepPopupPosition) {
