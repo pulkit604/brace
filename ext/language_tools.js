@@ -1291,6 +1291,7 @@ var lang = acequire("./lib/lang");
 var dom = acequire("./lib/dom");
 var snippetManager = acequire("./snippets").snippetManager;
 var Range = acequire("./range").Range;
+var curr_key = '';
 
 var Autocomplete = function() {
     this.autoInsert = false;
@@ -1332,6 +1333,7 @@ var Autocomplete = function() {
     };
 
     this.openPopup = function(editor, prefix, keepPopupPosition, key) {
+        curr_key = key;
         if (!this.popup)
             this.$init();
 
@@ -1427,7 +1429,7 @@ var Autocomplete = function() {
         this.popup.setRow(row);
     };
 
-    this.insertMatch = function(data, options, key) {
+    this.insertMatch = function(data, options) {
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
@@ -1444,7 +1446,7 @@ var Autocomplete = function() {
                 }
             }
             if (data.snippet) {
-                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
+                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + curr_key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
                 this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
@@ -1467,7 +1469,7 @@ var Autocomplete = function() {
         "Ctrl-Down|Ctrl-End": function(editor) { editor.completer.goTo("end"); },
 
         "Esc": function(editor) { editor.completer.detach(); },
-        "Return": function(editor) {console.log('hrere'); return editor.completer.insertMatch(); },
+        "Return": function(editor) {return editor.completer.insertMatch(); },
         "Shift-Return": function(editor) { editor.completer.insertMatch(null, {deleteSuffix: true}); },
         "Tab": function(editor) {
             var result = editor.completer.insertMatch();
@@ -1569,7 +1571,7 @@ var Autocomplete = function() {
             if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet)
                 return detachIfFinished();
             if (this.autoInsert && filtered.length == 1 && results.finished)
-                return this.insertMatch(filtered[0], null, key);
+                return this.insertMatch(filtered[0]);
 
             this.openPopup(this.editor, prefix, keepPopupPosition, key);
         }.bind(this));
