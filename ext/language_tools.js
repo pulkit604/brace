@@ -1671,10 +1671,7 @@ Autocomplete.startCommand = {
             editor.completer = new Autocomplete();
         editor.completer.autoInsert = false;
         editor.completer.autoSelect = true;
-        console.log('debug3');
-        console.log(arguments);
-        console.log(arguments.key);
-        editor.completer.showPopup(editor, arguments.key);
+        editor.completer.showPopup(editor, arguments[1].key);
         editor.completer.cancelContextMenu();
     },
     bindKey: "Ctrl-Space|Ctrl-Shift-Space|Alt-Space"

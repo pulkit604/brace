@@ -13646,8 +13646,6 @@ ace.define("ace/editor",["require","exports","module","ace/lib/fixoldbrowsers","
         };
 
         this.execCommand = function(command, args) {
-            console.log('debug2');
-            console.log(args.key);
             return this.commands.exec(command, this, args);
         };
         this.insert = function(text, pasted) {
