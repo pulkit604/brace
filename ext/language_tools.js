@@ -1437,7 +1437,7 @@ var Autocomplete = function() {
             return false;
 
         if (data.completer && data.completer.insertMatch) {
-            data.completer.insertMatch(this.editor, data, key);
+            data.completer.insertMatch(this.editor, data);
         } else {
             if (this.completions.filterText) {
                 var ranges = this.editor.selection.getAllRanges();
@@ -1542,7 +1542,7 @@ var Autocomplete = function() {
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
                 return this.detach();
-            this.openPopup(this.editor, prefix, keepPopupPosition);
+            this.openPopup(this.editor, prefix, keepPopupPosition, key);
             return;
         }
         var _id = this.gatherCompletionsId;
