@@ -1450,7 +1450,7 @@ var Autocomplete = function() {
                 data_added = data.snippet;
             }
             else{
-                this.editor.execCommand("insertstring", 'codepuzzleoption_' + curr_key + '_' + data.value + '_codepuzzleoption'));
+                this.editor.execCommand("insertstring", 'codepuzzleoption_' + curr_key + '_' + data.value + '_codepuzzleoption');
                 data_added = data.value;
             }
             this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
