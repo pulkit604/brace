@@ -1456,8 +1456,10 @@ var Autocomplete = function() {
                 this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data.snippet.replace('($0)','');
                 this.editor._emit('updateNumAnswered');
             }
-            else
+            else{
+                console.log('jrere');
                 this.editor.execCommand("insertstring", data.value || data);
+            }
         }
         this.detach();
     };
