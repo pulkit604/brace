@@ -1458,7 +1458,7 @@ var Autocomplete = function() {
             var curr_row = position.row;
             var curr_col = position.column;
             var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
-            console.log(curr_token);
+            console.log(curr_token.start,curr_row,data_added.length);
             this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
             this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
             this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
