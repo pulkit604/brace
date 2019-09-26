@@ -1532,9 +1532,9 @@ var Autocomplete = function() {
         }
 
         editor.on("changeSelection", this.changeListener);
-        editor.on("blur", this.blurListener);
-        editor.on("mousedown", this.mousedownListener);
-        editor.on("mousewheel", this.mousewheelListener);
+        //editor.on("blur", this.blurListener);
+        //editor.on("mousedown", this.mousedownListener);
+        //editor.on("mousewheel", this.mousewheelListener);
         this.updateCompletions();
     };
 
