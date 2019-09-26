@@ -1444,24 +1444,30 @@ var Autocomplete = function() {
                     this.editor.session.remove(range);
                 }
             }
-            var data_added = '';
             if (data.snippet) {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + curr_key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
-                data_added = data.snippet;
+                this.editor.find('codepuzzleoption_'+ curr_key +'_' + data.snippet + '_codepuzzleoption');
+                var position = this.editor.getCursorPosition();
+                var curr_row = position.row;
+                var curr_col = position.column;
+                var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data.snippet.length + 15, curr_row, curr_token.start + data.snippet.length+ 32));
+                this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data.snippet.replace('($0)','');
+                this.editor._emit('updateNumAnswered');
             }
             else{
                 this.editor.execCommand("insertstring", data.value || data);
-                data_added = data.value;
+                this.editor.find('codepuzzleoption_'+ curr_key +'_' + data.value + '_codepuzzleoption');
+                var position = this.editor.getCursorPosition();
+                var curr_row = position.row;
+                var curr_col = position.column;
+                var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data.value.length + 15, curr_row, curr_token.start + data.value.length+ 32));
+                this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data.value;
+                this.editor._emit('updateNumAnswered');
             }
-            this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
-            var position = this.editor.getCursorPosition();
-            var curr_row = position.row;
-            var curr_col = position.column;
-            var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
-            this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
-            this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
-            this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
-            this.editor._emit('updateNumAnswered');
         }
         this.detach();
     };
