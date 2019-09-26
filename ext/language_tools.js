@@ -1453,7 +1453,6 @@ var Autocomplete = function() {
                 this.editor.execCommand("insertstring", 'codepuzzleoption_' + curr_key + '_' + data.value + '_codepuzzleoption');
                 data_added = data.value;
             }
-            /*
             this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
             var position = this.editor.getCursorPosition();
             var curr_row = position.row;
@@ -1463,7 +1462,6 @@ var Autocomplete = function() {
             this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
             this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
             this.editor._emit('updateNumAnswered');
-            */
         }
         this.detach();
     };
