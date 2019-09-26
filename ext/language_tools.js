@@ -1458,10 +1458,8 @@ var Autocomplete = function() {
             var curr_row = position.row;
             var curr_col = position.column;
             var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
-            console.log(new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
-            console.log(new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
             this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
-            if(data_snippet){
+            if(data.snippet){
                 this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
             }
             else{
