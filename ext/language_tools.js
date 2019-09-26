@@ -1444,9 +1444,10 @@ var Autocomplete = function() {
                     this.editor.session.remove(range);
                 }
             }
+            console.log(data);
             if (data.snippet) {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + curr_key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
-                this.editor.find('codepuzzleoption_A_' + data.snippet + '_codepuzzleoption');
+                this.editor.find('codepuzzleoption_'+ curr_key +'_' + data.snippet + '_codepuzzleoption');
                 var position = this.editor.getCursorPosition();
                 var curr_row = position.row;
                 var curr_col = position.column;
@@ -1457,7 +1458,6 @@ var Autocomplete = function() {
                 this.editor._emit('updateNumAnswered');
             }
             else{
-                console.log('jrere');
                 this.editor.execCommand("insertstring", data.value || data);
             }
         }
