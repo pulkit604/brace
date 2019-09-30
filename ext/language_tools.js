@@ -1429,7 +1429,6 @@ var Autocomplete = function() {
     };
 
     this.insertMatch = function(data, options) {
-        console.log(1);
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
@@ -1540,6 +1539,7 @@ var Autocomplete = function() {
     };
 
     this.updateCompletions = function(keepPopupPosition) {
+        console.log(1);
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
