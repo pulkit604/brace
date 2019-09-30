@@ -1539,7 +1539,6 @@ var Autocomplete = function() {
     };
 
     this.updateCompletions = function(keepPopupPosition) {
-        this.editor.from_auto = true;
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
