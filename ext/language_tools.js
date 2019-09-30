@@ -1429,6 +1429,7 @@ var Autocomplete = function() {
     };
 
     this.insertMatch = function(data, options) {
+        console.log(1);
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
