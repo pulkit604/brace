@@ -1020,7 +1020,7 @@ var AcePopup = function(parentNode) {
         if (selected)
             dom.addCssClass(selected, "ace_selected");
     });
-    var hideHoverMarker = function() { setHoverMarker(-1); this.editor._emit('hekki');};
+    var hideHoverMarker = function() { setHoverMarker(-1); e.editor._emit('hekki');};
     var setHoverMarker = function(row, suppressRedraw) {
         if (row !== hoverMarker.start.row) {
             hoverMarker.start.row = hoverMarker.end.row = row;
