@@ -1576,12 +1576,12 @@ var Autocomplete = function() {
 
             this.completions.setFilter(prefix);
             var filtered = this.completions.filtered;
-            if (!filtered.length){
-                console.log('fd');
+            if (!filtered.length)
+                return detachIfFinished();
+            if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet){
+                console.log(6);
                 return detachIfFinished();
             }
-            if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet)
-                return detachIfFinished();
             if (this.autoInsert && filtered.length == 1 && results.finished)
                 return this.insertMatch(filtered[0]);
 
