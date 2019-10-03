@@ -1125,7 +1125,6 @@ var AcePopup = function(parentNode) {
     });
 
     popup.hide = function() {
-        console.log('hre');
         this.container.style.display = "none";
         this._signal("hide");
         popup.isOpen = false;
@@ -1546,8 +1545,10 @@ var Autocomplete = function() {
             if (prefix == this.completions.filterText)
                 return;
             this.completions.setFilter(prefix);
-            if (!this.completions.filtered.length)
+            if (!this.completions.filtered.length) {
+                console.log('fdsf');
                 return this.detach();
+            }
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
