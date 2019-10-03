@@ -1020,7 +1020,7 @@ var AcePopup = function(parentNode) {
         if (selected)
             dom.addCssClass(selected, "ace_selected");
     });
-    var hideHoverMarker = function() { };
+    var hideHoverMarker = function() { setHoverMarker(-1);};
     var setHoverMarker = function(row, suppressRedraw) {
         if (row !== hoverMarker.start.row) {
             hoverMarker.start.row = hoverMarker.end.row = row;
@@ -1125,6 +1125,7 @@ var AcePopup = function(parentNode) {
     });
 
     popup.hide = function() {
+        console.log('hre');
         this.container.style.display = "none";
         this._signal("hide");
         popup.isOpen = false;
