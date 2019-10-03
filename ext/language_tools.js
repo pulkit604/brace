@@ -1545,10 +1545,8 @@ var Autocomplete = function() {
             if (prefix == this.completions.filterText)
                 return;
             this.completions.setFilter(prefix);
-            if (!this.completions.filtered.length) {
-                console.log('fdsf');
+            if (!this.completions.filtered.length)
                 return this.detach();
-            }
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
@@ -1578,8 +1576,10 @@ var Autocomplete = function() {
 
             this.completions.setFilter(prefix);
             var filtered = this.completions.filtered;
-            if (!filtered.length)
+            if (!filtered.length){
+                console.log('fd');
                 return detachIfFinished();
+            }
             if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet)
                 return detachIfFinished();
             if (this.autoInsert && filtered.length == 1 && results.finished)
