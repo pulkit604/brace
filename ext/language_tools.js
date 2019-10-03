@@ -1365,6 +1365,7 @@ var Autocomplete = function() {
     };
 
     this.detach = function() {
+        console.log(1);
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
