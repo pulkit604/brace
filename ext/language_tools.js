@@ -1539,6 +1539,7 @@ var Autocomplete = function() {
     };
 
     this.updateCompletions = function(keepPopupPosition) {
+        console.log(1);
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
@@ -1578,10 +1579,8 @@ var Autocomplete = function() {
             var filtered = this.completions.filtered;
             if (!filtered.length)
                 return detachIfFinished();
-            if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet){
-                console.log(6);
+            if (filtered.length == 1 && filtered[0].value == prefix && !filtered[0].snippet)
                 return detachIfFinished();
-            }
             if (this.autoInsert && filtered.length == 1 && results.finished)
                 return this.insertMatch(filtered[0]);
 
