@@ -1430,6 +1430,7 @@ var Autocomplete = function() {
     };
 
     this.insertMatch = function(data, options) {
+        console.log('sadas');
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
