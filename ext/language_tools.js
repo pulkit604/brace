@@ -1020,7 +1020,7 @@ var AcePopup = function(parentNode) {
         if (selected)
             dom.addCssClass(selected, "ace_selected");
     });
-    var hideHoverMarker = function(e) { setHoverMarker(-1); e.editor._emit('hekki');};
+    var hideHoverMarker = function() { };
     var setHoverMarker = function(row, suppressRedraw) {
         if (row !== hoverMarker.start.row) {
             hoverMarker.start.row = hoverMarker.end.row = row;
@@ -1034,7 +1034,7 @@ var AcePopup = function(parentNode) {
     };
 
     event.addListener(popup.container, "mouseout", hideHoverMarker);
-    popup.on("hide", hideHoverMarker(event));
+    popup.on("hide", hideHoverMarker);
     popup.on("changeSelection", hideHoverMarker);
 
     popup.session.doc.getLength = function() {
