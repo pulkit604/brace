@@ -1519,7 +1519,6 @@ var Autocomplete = function() {
     };
 
     this.showPopup = function(editor) {
-        console.log(1);
         if (this.editor)
             this.detach();
 
