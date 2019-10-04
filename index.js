@@ -14522,7 +14522,6 @@ ace.define("ace/editor",["require","exports","module","ace/lib/fixoldbrowsers","
             this.clearSelection();
         };
         this.replace = function(replacement, options) {
-            console.log(replacement);
             if (options)
                 this.$search.set(options);
 
