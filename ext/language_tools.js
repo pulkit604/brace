@@ -1128,6 +1128,7 @@ var AcePopup = function(parentNode) {
         this.container.style.display = "none";
         this._signal("hide");
         popup.isOpen = false;
+        this.editor._emit('popup_closed');
     };
     popup.show = function(pos, lineHeight, topdownOnly) {
         var el = this.container;
@@ -1364,9 +1365,7 @@ var Autocomplete = function() {
         }
     };
 
-    this.detach = function(from_return=false) {
-        if(!from_return)
-            this.editor._emit('popup_closed');
+    this.detach = function() {
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1470,7 +1469,7 @@ var Autocomplete = function() {
             this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
             this.editor._emit('updateNumAnswered');
         }
-        this.detach(true);
+        this.detach();
     };
 
 
