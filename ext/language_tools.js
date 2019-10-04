@@ -1364,8 +1364,9 @@ var Autocomplete = function() {
         }
     };
 
-    this.detach = function() {
-        this.editor._emit('popup_closed');
+    this.detach = function(from_return=false) {
+        if(!from_return)
+            this.editor._emit('popup_closed');
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1469,7 +1470,7 @@ var Autocomplete = function() {
             this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
             this.editor._emit('updateNumAnswered');
         }
-        this.detach();
+        this.detach(true);
     };
 
 
