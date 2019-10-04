@@ -1128,6 +1128,8 @@ var AcePopup = function(parentNode) {
         this.container.style.display = "none";
         this._signal("hide");
         popup.isOpen = false;
+        console.log(this);
+        console.log(editor);
         this.editor._emit('popup_closed');
     };
     popup.show = function(pos, lineHeight, topdownOnly) {
