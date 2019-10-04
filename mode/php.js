@@ -1881,6 +1881,10 @@ var PhpLangHighlightRules = function() {
                 regex : "__(?!_)[a-zA-z0-9]+__"
             },
             {
+                token : "codepuzzleeditorquestion",
+                regex : "__(?!_)[a-zA-z0-9]+__"
+            },
+            {
                 token : "codepuzzleoption",
                 regex : "codepuzzleoption_[a-zA-Z]_((?!_codepuzzleoption).)*_codepuzzleoption"
             },
