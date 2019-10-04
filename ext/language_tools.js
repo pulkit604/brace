@@ -648,8 +648,10 @@ var TabstopManager = function(editor) {
             var changedOutside = ts && !ts.some(function(r) {
                 return comparePoints(r.start, start) <= 0 && comparePoints(r.end, end) >= 0;
             });
-            if (changedOutside)
+            if (changedOutside){
+                console.log('f');
                 return this.detach();
+            }
         }
         var ranges = this.ranges;
         for (var i = 0; i < ranges.length; i++) {
@@ -675,8 +677,10 @@ var TabstopManager = function(editor) {
             if (comparePoints(r.start, r.end) > 0)
                 this.removeRange(r);
         }
-        if (!ranges.length)
+        if (!ranges.length) {
+            console.log('g');
             this.detach();
+        }
     };
     this.updateLinkedFields = function() {
         var ts = this.selectedTabstop;
@@ -712,9 +716,11 @@ var TabstopManager = function(editor) {
             if (containsLead && containsAnchor)
                 return;
         }
+        console.log('h');
         this.detach();
     };
     this.onChangeSession = function() {
+        console.log('i');
         this.detach();
     };
     this.tabNext = function(dir) {
@@ -724,8 +730,10 @@ var TabstopManager = function(editor) {
         if (index == max)
             index = 0;
         this.selectTabstop(index);
-        if (index === 0)
+        if (index === 0){
+            console.log('j');
             this.detach();
+        }
     };
     this.selectTabstop = function(index) {
         this.$openTabstops = null;
@@ -1125,7 +1133,6 @@ var AcePopup = function(parentNode) {
     });
 
     popup.hide = function() {
-        console.log(2);
         this.container.style.display = "none";
         this._signal("hide");
         popup.isOpen = false;
@@ -1379,7 +1386,7 @@ var Autocomplete = function() {
         if (this.popup && this.popup.isOpen) {
             this.popup.hide();
             if(!ignore_popup_closed_event)
-            this.editor._emit('popup_closed');
+                this.editor._emit('popup_closed');
         }
 
         if (this.base)
@@ -1391,12 +1398,16 @@ var Autocomplete = function() {
     this.changeListener = function(e) {
         var cursor = this.editor.selection.lead;
         if (cursor.row != this.base.row || cursor.column < this.base.column) {
+            console.log('a');
             this.detach();
         }
         if (this.activated)
             this.changeTimer.schedule();
-        else
+        else{
+            console.log('b');
             this.detach();
+        }
+
     };
 
     this.blurListener = function(e) {
@@ -1407,6 +1418,7 @@ var Autocomplete = function() {
         if (el != text && el.parentNode != container && !fromTooltip
             && el != this.tooltipNode && e.relatedTarget != text
         ) {
+            console.log('c');
             this.detach();
         }
     };
@@ -1524,8 +1536,10 @@ var Autocomplete = function() {
     };
 
     this.showPopup = function(editor) {
-        if (this.editor)
+        if (this.editor){
+            console.log('d');
             this.detach();
+        }
 
         this.activated = true;
 
@@ -1555,7 +1569,10 @@ var Autocomplete = function() {
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
+            {
+                console.log('e');
                 return this.detach();
+            }
             this.openPopup(this.editor, prefix, keepPopupPosition);
             return;
         }
