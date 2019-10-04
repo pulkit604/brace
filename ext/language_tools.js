@@ -1125,6 +1125,7 @@ var AcePopup = function(parentNode) {
     });
 
     popup.hide = function() {
+        console.log(2);
         this.container.style.display = "none";
         this._signal("hide");
         popup.isOpen = false;
