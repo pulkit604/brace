@@ -1128,8 +1128,7 @@ var AcePopup = function(parentNode) {
         this.container.style.display = "none";
         this._signal("hide");
         popup.isOpen = false;
-        console.log(this);
-        this._emit('popup_closed');
+
     };
     popup.show = function(pos, lineHeight, topdownOnly) {
         var el = this.container;
@@ -1376,8 +1375,10 @@ var Autocomplete = function() {
         this.hideDocTooltip();
 
         this.gatherCompletionsId += 1;
-        if (this.popup && this.popup.isOpen)
+        if (this.popup && this.popup.isOpen) {
             this.popup.hide();
+            this.editor._emit('popup_closed');
+        }
 
         if (this.base)
             this.base.detach();
