@@ -648,10 +648,8 @@ var TabstopManager = function(editor) {
             var changedOutside = ts && !ts.some(function(r) {
                 return comparePoints(r.start, start) <= 0 && comparePoints(r.end, end) >= 0;
             });
-            if (changedOutside){
-                console.log('f');
+            if (changedOutside)
                 return this.detach();
-            }
         }
         var ranges = this.ranges;
         for (var i = 0; i < ranges.length; i++) {
@@ -677,10 +675,8 @@ var TabstopManager = function(editor) {
             if (comparePoints(r.start, r.end) > 0)
                 this.removeRange(r);
         }
-        if (!ranges.length) {
-            console.log('g');
+        if (!ranges.length)
             this.detach();
-        }
     };
     this.updateLinkedFields = function() {
         var ts = this.selectedTabstop;
@@ -716,11 +712,9 @@ var TabstopManager = function(editor) {
             if (containsLead && containsAnchor)
                 return;
         }
-        console.log('h');
         this.detach();
     };
     this.onChangeSession = function() {
-        console.log('i');
         this.detach();
     };
     this.tabNext = function(dir) {
@@ -730,10 +724,8 @@ var TabstopManager = function(editor) {
         if (index == max)
             index = 0;
         this.selectTabstop(index);
-        if (index === 0){
-            console.log('j');
+        if (index === 0)
             this.detach();
-        }
     };
     this.selectTabstop = function(index) {
         this.$openTabstops = null;
@@ -837,10 +829,8 @@ var TabstopManager = function(editor) {
             i = this.tabstops.indexOf(range.tabstop);
             if (i != -1)
                 this.tabstops.splice(i, 1);
-            if (!this.tabstops.length){
-                console.log('m');
+            if (!this.tabstops.length)
                 this.detach();
-            }
         }
     };
 
@@ -1370,10 +1360,8 @@ var Autocomplete = function() {
             pos.left += renderer.gutterWidth;
 
             this.popup.show(pos, lineHeight);
-        } else if (keepPopupPosition && !prefix) {
-            console.log('m');
+        } else if (keepPopupPosition && !prefix)
             this.detach();
-        }
     };
 
     this.detach = function(ignore_popup_closed_event=false) {
@@ -1401,13 +1389,11 @@ var Autocomplete = function() {
     this.changeListener = function(e) {
         var cursor = this.editor.selection.lead;
         if (cursor.row != this.base.row || cursor.column < this.base.column) {
-            console.log('a');
             this.detach();
         }
         if (this.activated)
             this.changeTimer.schedule();
         else{
-            console.log('b');
             this.detach();
         }
 
@@ -1421,7 +1407,6 @@ var Autocomplete = function() {
         if (el != text && el.parentNode != container && !fromTooltip
             && el != this.tooltipNode && e.relatedTarget != text
         ) {
-            console.log('c');
             this.detach();
         }
     };
@@ -1540,7 +1525,6 @@ var Autocomplete = function() {
 
     this.showPopup = function(editor) {
         if (this.editor){
-            console.log('d');
             this.detach();
         }
 
@@ -1567,17 +1551,12 @@ var Autocomplete = function() {
             if (prefix == this.completions.filterText)
                 return;
             this.completions.setFilter(prefix);
-            if (!this.completions.filtered.length){
-                console.log('k');
-                return this.detach();
-            }
+            if (!this.completions.filtered.length)
+                return this.detach(true);
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
-            {
-                console.log('e');
                 return this.detach();
-            }
             this.openPopup(this.editor, prefix, keepPopupPosition);
             return;
         }
@@ -1585,7 +1564,6 @@ var Autocomplete = function() {
         this.gatherCompletions(this.editor, function(err, results) {
             var detachIfFinished = function() {
                 if (!results.finished) return;
-                console.log('l');
                 return this.detach();
             }.bind(this);
 
