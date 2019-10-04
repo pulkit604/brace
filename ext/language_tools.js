@@ -1129,8 +1129,7 @@ var AcePopup = function(parentNode) {
         this._signal("hide");
         popup.isOpen = false;
         console.log(this);
-        console.log(editor);
-        this.editor._emit('popup_closed');
+        this._emit('popup_closed');
     };
     popup.show = function(pos, lineHeight, topdownOnly) {
         var el = this.container;
