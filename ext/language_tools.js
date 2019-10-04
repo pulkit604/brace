@@ -837,8 +837,10 @@ var TabstopManager = function(editor) {
             i = this.tabstops.indexOf(range.tabstop);
             if (i != -1)
                 this.tabstops.splice(i, 1);
-            if (!this.tabstops.length)
+            if (!this.tabstops.length){
+                console.log('m');
                 this.detach();
+            }
         }
     };
 
@@ -1369,6 +1371,7 @@ var Autocomplete = function() {
 
             this.popup.show(pos, lineHeight);
         } else if (keepPopupPosition && !prefix) {
+            console.log('m');
             this.detach();
         }
     };
@@ -1564,8 +1567,10 @@ var Autocomplete = function() {
             if (prefix == this.completions.filterText)
                 return;
             this.completions.setFilter(prefix);
-            if (!this.completions.filtered.length)
+            if (!this.completions.filtered.length){
+                console.log('k');
                 return this.detach();
+            }
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
@@ -1580,6 +1585,7 @@ var Autocomplete = function() {
         this.gatherCompletions(this.editor, function(err, results) {
             var detachIfFinished = function() {
                 if (!results.finished) return;
+                console.log('l');
                 return this.detach();
             }.bind(this);
 
