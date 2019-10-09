@@ -1364,7 +1364,7 @@ var Autocomplete = function() {
             this.detach();
     };
 
-    this.detach = function(ignore_popup_closed_event=false) {
+    this.detach = function(ignore_popup_closed_event=false, last_word='') {
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1552,7 +1552,7 @@ var Autocomplete = function() {
                 return;
             this.completions.setFilter(prefix);
             if (!this.completions.filtered.length){
-                console.log(this.base);
+                console.log(this.completions,prefix);
                 return this.detach(true);
             }
             if (this.completions.filtered.length == 1
