@@ -1377,6 +1377,7 @@ var Autocomplete = function() {
             console.log('inside popup if');
             this.popup.hide();
             if(!ignore_popup_closed_event){
+                console.log('emitting start');
                 this.editor._emit('popup_closed', last_word);
                 console.log('emited');
             }
