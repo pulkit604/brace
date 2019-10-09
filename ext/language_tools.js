@@ -1377,6 +1377,7 @@ var Autocomplete = function() {
             this.popup.hide();
             if(ignore_popup_closed_event){
                 this.editor._emit('popup_closed');
+                console.log(last_word);
                 this.editor.last_word = last_word;
             }
         }
