@@ -1374,8 +1374,8 @@ var Autocomplete = function() {
         this.hideDocTooltip();
         this.gatherCompletionsId += 1;
         if (this.popup && this.popup.isOpen) {
-            console.log('inside popup if');
             this.popup.hide();
+            console.log(ignore_popup_closed_event);
             if(!ignore_popup_closed_event){
                 console.log('emitting start');
                 this.editor._emit('popup_closed', last_word);
