@@ -1552,7 +1552,7 @@ var Autocomplete = function() {
                 return;
             this.completions.setFilter(prefix);
             if (!this.completions.filtered.length)
-                //return this.detach(true);
+                return this.detach(true);
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
