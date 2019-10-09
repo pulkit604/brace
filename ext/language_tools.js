@@ -1380,8 +1380,10 @@ var Autocomplete = function() {
         if (this.base)
             this.base.detach();
         this.activated = false;
-        if(!ignore_popup_closed_event)
+        if(!ignore_popup_closed_event){
             this.editor._emit('popup_closed', last_word);
+            console.log('emited');
+        }
         this.completions = this.base = null;
     };
 
