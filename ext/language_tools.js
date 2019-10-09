@@ -1376,10 +1376,9 @@ var Autocomplete = function() {
         this.gatherCompletionsId += 1;
         if (this.popup && this.popup.isOpen) {
             this.popup.hide();
-            if(!ignore_popup_closed_event)
-                this.editor._emit('popup_closed');
         }
-
+        if(!ignore_popup_closed_event)
+            this.editor._emit('popup_closed', last_word);
         if (this.base)
             this.base.detach();
         this.activated = false;
@@ -1552,8 +1551,7 @@ var Autocomplete = function() {
                 return;
             this.completions.setFilter(prefix);
             if (!this.completions.filtered.length){
-                console.log(this.completions,prefix);
-                return this.detach(true);
+                return this.detach(true, prefix);
             }
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
