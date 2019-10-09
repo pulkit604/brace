@@ -1372,9 +1372,9 @@ var Autocomplete = function() {
         this.editor.off("mousewheel", this.mousewheelListener);
         this.changeTimer.cancel();
         this.hideDocTooltip();
-        console.log('inside detach');
         this.gatherCompletionsId += 1;
         if (this.popup && this.popup.isOpen) {
+            console.log('inside popup if');
             this.popup.hide();
             if(!ignore_popup_closed_event){
                 this.editor._emit('popup_closed', last_word);
