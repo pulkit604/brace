@@ -1376,14 +1376,14 @@ var Autocomplete = function() {
         this.gatherCompletionsId += 1;
         if (this.popup && this.popup.isOpen) {
             this.popup.hide();
+            if(!ignore_popup_closed_event){
+                this.editor._emit('popup_closed', last_word);
+                console.log('emited');
+            }
         }
         if (this.base)
             this.base.detach();
         this.activated = false;
-        if(!ignore_popup_closed_event){
-            this.editor._emit('popup_closed', last_word);
-            console.log('emited');
-        }
         this.completions = this.base = null;
     };
 
