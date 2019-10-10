@@ -1389,6 +1389,7 @@ var Autocomplete = function() {
         var cursor = this.editor.selection.lead;
         if (cursor.row != this.base.row || cursor.column < this.base.column) {
             this.detach(true);
+            this.editor.selection.clearSelection();
         }
         if (this.activated)
             this.changeTimer.schedule();
