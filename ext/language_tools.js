@@ -1364,7 +1364,7 @@ var Autocomplete = function() {
             this.detach();
     };
 
-    this.detach = function(ignore_popup_closed_event=false, last_word='') {
+    this.detach = function(ignore_popup_closed_event=false) {
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1376,7 +1376,6 @@ var Autocomplete = function() {
         if (this.popup && this.popup.isOpen) {
             this.popup.hide();
             if(ignore_popup_closed_event){
-                this.editor.last_word = last_word;
                 this.editor._emit('popup_closed');
             }
         }
@@ -1549,11 +1548,12 @@ var Autocomplete = function() {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
+            this.editor.last_word = prefix;
             if (prefix == this.completions.filterText)
                 return;
             this.completions.setFilter(prefix);
             if (!this.completions.filtered.length){
-                return this.detach(true, prefix);
+                return this.detach(true);
             }
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
