@@ -1389,7 +1389,7 @@ var Autocomplete = function() {
     this.changeListener = function(e) {
         var cursor = this.editor.selection.lead;
         if (cursor.row != this.base.row || cursor.column < this.base.column) {
-            console.log(cursor);
+            debugger;
             this.detach(true);
         }
         if (this.activated)
