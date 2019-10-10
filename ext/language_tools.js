@@ -1365,7 +1365,6 @@ var Autocomplete = function() {
     };
 
     this.detach = function(ignore_popup_closed_event=false, last_word='') {
-        console.log(1);
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1375,8 +1374,8 @@ var Autocomplete = function() {
         this.hideDocTooltip();
         this.gatherCompletionsId += 1;
         if (this.popup && this.popup.isOpen) {
-            console.log(2);
             this.popup.hide();
+            debugger;
             if(ignore_popup_closed_event){
                 console.log('3');
                 this.editor.last_word = last_word;
