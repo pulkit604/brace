@@ -1407,6 +1407,11 @@ var Autocomplete = function() {
         if (el != text && el.parentNode != container && !fromTooltip
             && el != this.tooltipNode && e.relatedTarget != text
         ) {
+            console.log('here');
+            console.log(el);
+            console.log(text);
+            console.log(fromTooltip);
+            console.log(container);
             this.detach(true);
         }
     };
