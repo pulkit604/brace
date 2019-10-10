@@ -1400,6 +1400,7 @@ var Autocomplete = function() {
     };
 
     this.blurListener = function(e) {
+        console.log('inside blur');
         var el = document.activeElement;
         var text = this.editor.textInput.getElement();
         var fromTooltip = e.relatedTarget && this.tooltipNode && this.tooltipNode.contains(e.relatedTarget);
