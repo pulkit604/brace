@@ -1376,7 +1376,6 @@ var Autocomplete = function() {
         if (this.popup && this.popup.isOpen) {
             this.popup.hide();
             if(ignore_popup_closed_event){
-                debugger;
                 this.editor._emit('popup_closed');
             }
         }
@@ -1473,7 +1472,7 @@ var Autocomplete = function() {
             this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
             this.editor._emit('updateNumAnswered');
         }
-        this.detach(true);
+        this.detach();
     };
 
 
