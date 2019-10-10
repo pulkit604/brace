@@ -1365,7 +1365,7 @@ var Autocomplete = function() {
     };
 
     this.detach = function(ignore_popup_closed_event=false, last_word='') {
-        debugger;
+        console.log(1);
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1375,8 +1375,10 @@ var Autocomplete = function() {
         this.hideDocTooltip();
         this.gatherCompletionsId += 1;
         if (this.popup && this.popup.isOpen) {
+            console.log(2);
             this.popup.hide();
             if(ignore_popup_closed_event){
+                console.log('3');
                 this.editor.last_word = last_word;
                 this.editor._emit('popup_closed');
             }
@@ -1539,7 +1541,7 @@ var Autocomplete = function() {
         }
 
         editor.on("changeSelection", this.changeListener);
-        editor.on("blur", this.blurListener);
+        //editor.on("blur", this.blurListener);
         //editor.on("mousedown", this.mousedownListener);
         //editor.on("mousewheel", this.mousewheelListener);
         this.updateCompletions();
