@@ -1365,7 +1365,6 @@ var Autocomplete = function() {
     };
 
     this.detach = function(ignore_popup_closed_event=false, last_word='') {
-        console.log('inside detach');
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1408,6 +1407,7 @@ var Autocomplete = function() {
         if (el != text && el.parentNode != container && !fromTooltip
             && el != this.tooltipNode && e.relatedTarget != text
         ) {
+            console.log('fromm here');
             this.detach(true);
         }
     };
