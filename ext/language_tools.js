@@ -1407,7 +1407,7 @@ var Autocomplete = function() {
         if (el != text && el.parentNode != container && !fromTooltip
             && el != this.tooltipNode && e.relatedTarget != text
         ) {
-            this.detach();
+            this.detach(true);
         }
     };
 
@@ -1538,7 +1538,7 @@ var Autocomplete = function() {
         }
 
         editor.on("changeSelection", this.changeListener);
-        //editor.on("blur", this.blurListener);
+        editor.on("blur", this.blurListener);
         //editor.on("mousedown", this.mousedownListener);
         //editor.on("mousewheel", this.mousewheelListener);
         this.updateCompletions();
