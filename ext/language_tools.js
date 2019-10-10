@@ -1376,7 +1376,6 @@ var Autocomplete = function() {
         if (this.popup && this.popup.isOpen) {
             this.popup.hide();
             if(ignore_popup_closed_event){
-                debugger;
                 this.editor._emit('popup_closed');
             }
         }
@@ -1548,6 +1547,7 @@ var Autocomplete = function() {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
+            debugger;
             this.editor.last_word = prefix;
             if (prefix == this.completions.filterText)
                 return;
