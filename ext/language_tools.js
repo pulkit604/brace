@@ -1365,6 +1365,7 @@ var Autocomplete = function() {
     };
 
     this.detach = function(ignore_popup_closed_event=false, last_word='') {
+        console.log('inside detach');
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1400,7 +1401,6 @@ var Autocomplete = function() {
     };
 
     this.blurListener = function(e) {
-        console.log('inside blur');
         var el = document.activeElement;
         var text = this.editor.textInput.getElement();
         var fromTooltip = e.relatedTarget && this.tooltipNode && this.tooltipNode.contains(e.relatedTarget);
@@ -1408,11 +1408,6 @@ var Autocomplete = function() {
         if (el != text && el.parentNode != container && !fromTooltip
             && el != this.tooltipNode && e.relatedTarget != text
         ) {
-            console.log('here');
-            console.log(el);
-            console.log(text);
-            console.log(fromTooltip);
-            console.log(container);
             this.detach(true);
         }
     };
