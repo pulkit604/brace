@@ -1546,14 +1546,14 @@ var Autocomplete = function() {
     this.updateCompletions = function(keepPopupPosition) {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
-            console.log(pos, this.base);
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
             this.editor.last_word = prefix;
             if (prefix == this.completions.filterText)
                 return;
             this.completions.setFilter(prefix);
             if (!this.completions.filtered.length){
-                return this.detach(true);
+                if(!this.editor.auto_from_blank_start)
+                    return this.detach(true);
             }
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
