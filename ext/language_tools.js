@@ -1546,9 +1546,9 @@ var Autocomplete = function() {
     this.updateCompletions = function(keepPopupPosition) {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
-            var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
             if(!this.editor.auto_from_blank_start)
-                prefix = prefix.substring(0,1);
+                console.log(pos);
+            var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
             this.editor.last_word = prefix;
             if (prefix == this.completions.filterText)
                 return;
