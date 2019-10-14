@@ -1876,7 +1876,7 @@ var PhpLangHighlightRules = function() {
                 regex : /(?:#|\/\/)(?:[^?]|\?[^>])*/
             },
             {
-                token : "codepuzzlequestion.codepuzzleeditorquestion",
+                token : "codepuzzlequestion",
                 regex : "__[a-zA-Z0-9]__"
             },
             {
