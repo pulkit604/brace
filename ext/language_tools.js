@@ -1464,7 +1464,7 @@ var Autocomplete = function() {
             var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
             this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
             if(data.snippet){
-                console.log(curr_row,curr_token.start, data_added);
+                console.log(new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
                 this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
             }
             else{
