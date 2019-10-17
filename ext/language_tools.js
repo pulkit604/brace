@@ -1457,6 +1457,7 @@ var Autocomplete = function() {
                 this.editor.execCommand("insertstring", 'codepuzzleoption_' + curr_key + '_' + data.value + '_codepuzzleoption');
                 data_added = data.value;
             }
+            this.editor.ignore_string_remove_check = true;
             this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
             var position = this.editor.getCursorPosition();
             var curr_row = position.row;
@@ -1473,7 +1474,6 @@ var Autocomplete = function() {
             this.editor._emit('updateNumAnswered');
         }
         this.detach();
-        this.editor.ignore_string_remove_check = true;
     };
 
 
