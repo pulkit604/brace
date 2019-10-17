@@ -1449,6 +1449,7 @@ var Autocomplete = function() {
                 }
             }
             var data_added = '';
+            this.editor.ignore_string_remove_check = true;
             if (data.snippet) {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + curr_key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
                 data_added = data.snippet;
@@ -1457,7 +1458,6 @@ var Autocomplete = function() {
                 this.editor.execCommand("insertstring", 'codepuzzleoption_' + curr_key + '_' + data.value + '_codepuzzleoption');
                 data_added = data.value;
             }
-            this.editor.ignore_string_remove_check = true;
             this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
             var position = this.editor.getCursorPosition();
             var curr_row = position.row;
