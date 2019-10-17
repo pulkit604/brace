@@ -1433,6 +1433,7 @@ var Autocomplete = function() {
     };
 
     this.insertMatch = function(data, options) {
+        this.editor.ignore_string_remove_check = true;
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
@@ -1449,7 +1450,6 @@ var Autocomplete = function() {
                 }
             }
             var data_added = '';
-            this.editor.ignore_string_remove_check = true;
             if (data.snippet) {
                 snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + curr_key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
                 data_added = data.snippet;
