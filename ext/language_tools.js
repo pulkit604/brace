@@ -1473,6 +1473,7 @@ var Autocomplete = function() {
             this.editor._emit('updateNumAnswered');
         }
         this.detach();
+        this.editor.ignore_string_remove_check = true;
     };
 
 
@@ -1544,7 +1545,6 @@ var Autocomplete = function() {
     };
 
     this.updateCompletions = function(keepPopupPosition) {
-        console.log(this.completions);
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
