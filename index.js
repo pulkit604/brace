@@ -9090,6 +9090,7 @@ ace.define("ace/edit_session/folding",["require","exports","module","ace/range",
             return foldLine;
         };
         this.addFold = function(placeholder, range) {
+            console.log(range);
             var foldData = this.$foldData;
             var added = false;
             var fold;
