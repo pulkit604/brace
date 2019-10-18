@@ -1280,7 +1280,7 @@ exports.getCompletionPrefix = function (editor) {
 
 });
 
-ace.define("ace/autocomplete",["require","exports","module","ace/keyboard/hash_handler","ace/autocomplete/popup","ace/autocomplete/util","ace/lib/event","ace/lib/lang","ace/lib/dom","ace/snippets"], function(acequire, exports, module) {
+ace.define("ace/autocomplete",["require","exports","module","ace/keyboard/hash_handler","ace/autocomplete/popup","ace/autocomplete/util","ace/lib/event","ace/lib/lang","ace/lib/dom","ace/snippets","ace/range"], function(acequire, exports, module) {
 "use strict";
 
 var HashHandler = acequire("./keyboard/hash_handler").HashHandler;
@@ -1290,6 +1290,8 @@ var event = acequire("./lib/event");
 var lang = acequire("./lib/lang");
 var dom = acequire("./lib/dom");
 var snippetManager = acequire("./snippets").snippetManager;
+var Range = acequire("./range").Range;
+var curr_key = '';
 
 var Autocomplete = function() {
     this.autoInsert = false;
@@ -1362,7 +1364,7 @@ var Autocomplete = function() {
         }
     };
 
-    this.detach = function() {
+    this.detach = function(ignore_popup_closed_event=false, last_word = '') {
         this.editor.keyBinding.removeKeyboardHandler(this.keyboardHandler);
         this.editor.off("changeSelection", this.changeListener);
         this.editor.off("blur", this.blurListener);
@@ -1372,8 +1374,12 @@ var Autocomplete = function() {
         this.hideDocTooltip();
 
         this.gatherCompletionsId += 1;
-        if (this.popup && this.popup.isOpen)
+        if (this.popup && this.popup.isOpen) {
             this.popup.hide();
+            if(ignore_popup_closed_event){
+                this.editor._emit('popup_closed');
+            }
+        }
 
         if (this.base)
             this.base.detach();
@@ -1384,7 +1390,7 @@ var Autocomplete = function() {
     this.changeListener = function(e) {
         var cursor = this.editor.selection.lead;
         if (cursor.row != this.base.row || cursor.column < this.base.column) {
-            this.detach();
+            this.detach(true);
         }
         if (this.activated)
             this.changeTimer.schedule();
@@ -1427,6 +1433,7 @@ var Autocomplete = function() {
     };
 
     this.insertMatch = function(data, options) {
+        this.editor.ignore_string_remove_check = true;
         if (!data)
             data = this.popup.getData(this.popup.getRow());
         if (!data)
@@ -1442,10 +1449,29 @@ var Autocomplete = function() {
                     this.editor.session.remove(range);
                 }
             }
-            if (data.snippet)
-                snippetManager.insertSnippet(this.editor, data.snippet);
-            else
-                this.editor.execCommand("insertstring", data.value || data);
+            var data_added = '';
+            if (data.snippet) {
+                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + curr_key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
+                data_added = data.snippet;
+            }
+            else{
+                this.editor.execCommand("insertstring", 'codepuzzleoption_' + curr_key + '_' + data.value + '_codepuzzleoption');
+                data_added = data.value;
+            }
+            this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
+            var position = this.editor.getCursorPosition();
+            var curr_row = position.row;
+            var curr_col = position.column;
+            var curr_token = this.editor.session.getTokenAt(curr_row, curr_col);
+            this.editor.session.addFold('', new Range(curr_row, curr_token.start, curr_row, curr_token.start + 19));
+            if(data.snippet){
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 15, curr_row, curr_token.start + data_added.length+ 32));
+            }
+            else{
+                this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 19, curr_row, curr_token.start + data_added.length+ 36));
+            }
+            this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
+            this.editor._emit('updateNumAnswered');
         }
         this.detach();
     };
@@ -1511,9 +1537,11 @@ var Autocomplete = function() {
         }
 
         editor.on("changeSelection", this.changeListener);
+        /** events listeners which can be used when popup is open
         editor.on("blur", this.blurListener);
         editor.on("mousedown", this.mousedownListener);
         editor.on("mousewheel", this.mousewheelListener);
+        **/
 
         this.updateCompletions();
     };
@@ -1522,11 +1550,17 @@ var Autocomplete = function() {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
+            if(this.editor.auto_from_blank_start && prefix.length == 2){
+                this.editor.selection.moveCursorLeft();
+                prefix = prefix.substring(0,1);
+                this.editor.auto_from_blank_start = false;
+            }
+            this.editor.last_word = prefix;
             if (prefix == this.completions.filterText)
                 return;
             this.completions.setFilter(prefix);
             if (!this.completions.filtered.length)
-                return this.detach();
+                return this.detach(true);
             if (this.completions.filtered.length == 1
             && this.completions.filtered[0].value == prefix
             && !this.completions.filtered[0].snippet)
@@ -1661,6 +1695,7 @@ Autocomplete.startCommand = {
         editor.completer.autoInsert = false;
         editor.completer.autoSelect = true;
         editor.completer.showPopup(editor);
+        curr_key = arguments[1].key;
         editor.completer.cancelContextMenu();
     },
     bindKey: "Ctrl-Space|Ctrl-Shift-Space|Alt-Space"
@@ -1700,7 +1735,7 @@ var FilteredList = function(array, filterText) {
         var lower = needle.toLowerCase();
         loop: for (var i = 0, item; item = items[i]; i++) {
             var caption = item.value || item.caption || item.snippet;
-            if (!caption) continue;
+            if (!caption || caption.indexOf('codepuzzle') > -1 || caption.match('__[A-Z]__')) continue;
             var lastIndex = -1;
             var matchMask = 0;
             var penalty = 0;
@@ -1784,7 +1819,7 @@ ace.define("ace/autocomplete/text_completer",["require","exports","module","ace/
     };
 });
 
-ace.define("ace/ext/language_tools",["require","exports","module","ace/snippets","ace/autocomplete","ace/config","ace/lib/lang","ace/autocomplete/util","ace/autocomplete/text_completer","ace/editor","ace/config"], function(acequire, exports, module) {
+ace.define("ace/ext/language_tools",["require","exports","module","ace/snippets","ace/autocomplete","ace/config","ace/lib/lang","ace/autocomplete/util","ace/autocomplete/text_completer","ace/editor","ace/config","ace/range"], function(acequire, exports, module) {
 "use strict";
 
 var snippetManager = acequire("../snippets").snippetManager;
@@ -1792,6 +1827,7 @@ var Autocomplete = acequire("../autocomplete").Autocomplete;
 var config = acequire("../config");
 var lang = acequire("../lib/lang");
 var util = acequire("../autocomplete/util");
+var Range = acequire("../range").Range;
 
 var textCompleter = acequire("../autocomplete/text_completer");
 var keyWordCompleter = {
