@@ -1732,6 +1732,7 @@ var FilteredList = function(array, filterText) {
         var upper = needle.toUpperCase();
         var lower = needle.toLowerCase();
         loop: for (var i = 0, item; item = items[i]; i++) {
+            console.log(item);
             var caption = item.value || item.caption || item.snippet;
             if (!caption) continue;
             var lastIndex = -1;
