@@ -1732,9 +1732,8 @@ var FilteredList = function(array, filterText) {
         var upper = needle.toUpperCase();
         var lower = needle.toLowerCase();
         loop: for (var i = 0, item; item = items[i]; i++) {
-            console.log(item);
             var caption = item.value || item.caption || item.snippet;
-            if (!caption) continue;
+            if (!caption || caption.indexOf('codepuzzle') > -1 || caption.match('__[A-Z]__')) continue;
             var lastIndex = -1;
             var matchMask = 0;
             var penalty = 0;
