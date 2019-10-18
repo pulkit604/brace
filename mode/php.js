@@ -1883,6 +1883,10 @@ var PhpLangHighlightRules = function() {
                 token : "codepuzzleoption",
                 regex : "codepuzzleoption_[a-zA-Z]_((?!_codepuzzleoption).)*_codepuzzleoption"
             },
+            {
+                token : "codepuzzleauto",  
+                regex : "___(?!_)[a-zA-z0-9]+__"
+            },
             docComment.getStartRule("doc-start"),
             {
                 token : "comment", // multi line comment
