@@ -7937,6 +7937,7 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
+            debugger;
             if (this.getLength() <= 1)
                 this.$detectNewLine(text);
 
@@ -16339,7 +16340,7 @@ ace.define("ace/layer/font_metrics",["require","exports","module","ace/lib/oop",
         this.$measureNode.innerHTML = lang.stringRepeat("X", CHAR_COUNT);
 
         this.$characterSize = {width: 0, height: 0};
-        //this.checkForSizeChanges();
+        this.checkForSizeChanges();
     };
 
     (function() {
@@ -16393,12 +16394,10 @@ ace.define("ace/layer/font_metrics",["require","exports","module","ace/lib/oop",
             if (this.$pollSizeChangesTimer)
                 return this.$pollSizeChangesTimer;
             var self = this;
-            return null;
-            /*
-            this.$pollSizeChangesTimer = setInterval(function() {
+            return　this.$pollSizeChangesTimer = setInterval(function() {
                 self.checkForSizeChanges();
             }, 500);
-            */
+
         };
 
         this.setPolling = function(val) {
