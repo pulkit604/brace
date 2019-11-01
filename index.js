@@ -7937,9 +7937,7 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
-            console.log('::' + text.replace(/\u21b5/g, "") + '::');
-            if(text.replace(/\u21b5/g, "") == ""){
-                alert(1);
+            if(text.replace(/\n/g, "") == ""){
                 return;
             }
             if (this.getLength() <= 1)
