@@ -2052,7 +2052,6 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
                 afterContextMenu = false;
         };
         var onInput = function(e) {
-            console.log(e);
             if (inComposition)
                 return;
             var data = text.value;
@@ -2192,6 +2191,7 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
                 }
             });
             inputHandler = function compositionInputHandler(str) {
+                console.log(str);
                 if (timer)
                     clearTimeout(timer);
                 str = str.replace(/\x01/g, "");
