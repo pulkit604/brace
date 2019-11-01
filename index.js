@@ -7938,7 +7938,7 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
         };
         this.insert = function(position, text) {
             if(text.replace(/\n/g, "") == ""){
-                return;
+                text = "";
             }
             if (this.getLength() <= 1)
                 this.$detectNewLine(text);
