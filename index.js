@@ -2052,6 +2052,7 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
                 afterContextMenu = false;
         };
         var onInput = function(e) {
+            console.log(e);
             if (inComposition)
                 return;
             var data = text.value;
@@ -4702,7 +4703,6 @@ ace.define("ace/keyboard/keybinding",["require","exports","module","ace/lib/keys
         };
 
         this.$callKeyboardHandlers = function(hashId, keyString, keyCode, e) {
-            console.log(e);
             var toExecute;
             var success = false;
             var commands = this.$editor.commands;
@@ -7938,7 +7938,6 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
-            text = text.replace(/\u21b5/g, "");
             if (this.getLength() <= 1)
                 this.$detectNewLine(text);
 
