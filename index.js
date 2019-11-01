@@ -7938,7 +7938,7 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
         };
         this.insert = function(position, text) {
             if(text.replace(/\n/g, "") == ""){
-                text = "";
+                return this.insertMergedLines(position, text, true);
             }
             if (this.getLength() <= 1)
                 this.$detectNewLine(text);
@@ -8008,8 +8008,11 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             }
             this.insertMergedLines({row: row, column: column}, lines);
         };
-        this.insertMergedLines = function(position, lines) {
+        this.insertMergedLines = function(position, lines, whitespace) {
             var start = this.clippedPos(position.row, position.column);
+            if(whitespace){
+                return this.clonePos(start);
+            }
             var end = {
                 row: start.row + lines.length - 1,
                 column: (lines.length == 1 ? start.column : 0) + lines[lines.length - 1].length
