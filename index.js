@@ -7938,7 +7938,7 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
-            debugger;
+            text = text.replace(/\u21b5/g, "");
             if (this.getLength() <= 1)
                 this.$detectNewLine(text);
 
