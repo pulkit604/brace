@@ -10481,7 +10481,6 @@ ace.define("ace/edit_session",["require","exports","module","ace/lib/oop","ace/l
             return this.doc.getTextRange(range || this.selection.getRange());
         };
         this.insert = function(position, text) {
-            debugger;
             return this.doc.insert(position, text);
         };
         this.remove = function(range) {
@@ -16340,7 +16339,7 @@ ace.define("ace/layer/font_metrics",["require","exports","module","ace/lib/oop",
         this.$measureNode.innerHTML = lang.stringRepeat("X", CHAR_COUNT);
 
         this.$characterSize = {width: 0, height: 0};
-        this.checkForSizeChanges();
+        //this.checkForSizeChanges();
     };
 
     (function() {
@@ -16394,9 +16393,12 @@ ace.define("ace/layer/font_metrics",["require","exports","module","ace/lib/oop",
             if (this.$pollSizeChangesTimer)
                 return this.$pollSizeChangesTimer;
             var self = this;
-            return this.$pollSizeChangesTimer = setInterval(function() {
+            return null;
+            /*
+            this.$pollSizeChangesTimer = setInterval(function() {
                 self.checkForSizeChanges();
             }, 500);
+            */
         };
 
         this.setPolling = function(val) {
