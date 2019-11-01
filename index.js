@@ -2194,6 +2194,7 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
                 if (timer)
                     clearTimeout(timer);
                 str = str.replace(/\x01/g, "");
+                str = str.replace("↵", "");
                 if (str == c.lastValue)
                     return "";
                 if (c.lastValue && timer)
@@ -7938,7 +7939,6 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
-            debugger;
             if (this.getLength() <= 1)
                 this.$detectNewLine(text);
 
