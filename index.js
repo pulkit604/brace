@@ -7938,6 +7938,7 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
         };
         this.insert = function(position, text) {
             if(text.replace(/\u21b5/g, "") == ""){
+                alert(1);
                 return;
             }
             if (this.getLength() <= 1)
