@@ -10481,7 +10481,7 @@ ace.define("ace/edit_session",["require","exports","module","ace/lib/oop","ace/l
             return this.doc.getTextRange(range || this.selection.getRange());
         };
         this.insert = function(position, text) {
-            console.log(text);
+            debugger;
             return this.doc.insert(position, text);
         };
         this.remove = function(range) {
