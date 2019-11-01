@@ -2191,7 +2191,6 @@ ace.define("ace/keyboard/textinput_ios",["require","exports","module","ace/lib/e
                 }
             });
             inputHandler = function compositionInputHandler(str) {
-                console.log(str);
                 if (timer)
                     clearTimeout(timer);
                 str = str.replace(/\x01/g, "");
@@ -10482,6 +10481,7 @@ ace.define("ace/edit_session",["require","exports","module","ace/lib/oop","ace/l
             return this.doc.getTextRange(range || this.selection.getRange());
         };
         this.insert = function(position, text) {
+            console.log(text);
             return this.doc.insert(position, text);
         };
         this.remove = function(range) {
