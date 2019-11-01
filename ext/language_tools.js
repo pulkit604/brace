@@ -1548,7 +1548,6 @@ var Autocomplete = function() {
         if (keepPopupPosition && this.base && this.completions) {
             var pos = this.editor.getCursorPosition();
             var prefix = this.editor.session.getTextRange({start: this.base, end: pos});
-            console.log(prefix);
             if(this.editor.auto_from_blank_start && prefix.length == 2){
                 this.editor.selection.moveCursorLeft();
                 prefix = prefix.substring(0,1);
