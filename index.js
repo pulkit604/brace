@@ -2424,7 +2424,6 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
             isFocused && resetSelection(isSelectionEmpty);
         });
         var syncValue = lang.delayedCall(function() {
-            debugger;
             if (!inComposition) {
                 text.value = PLACEHOLDER;
                 isFocused && resetSelection();
