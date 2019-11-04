@@ -4702,7 +4702,6 @@ ace.define("ace/keyboard/keybinding",["require","exports","module","ace/lib/keys
         };
 
         this.$callKeyboardHandlers = function(hashId, keyString, keyCode, e) {
-            console.log(hashId,keyString,keyCode,e);
             var toExecute;
             var success = false;
             var commands = this.$editor.commands;
@@ -4744,6 +4743,7 @@ ace.define("ace/keyboard/keybinding",["require","exports","module","ace/lib/keys
         };
 
         this.onTextInput = function(text) {
+            console.log(text);
             this.$callKeyboardHandlers(-1, text);
         };
 
