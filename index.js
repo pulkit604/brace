@@ -2522,13 +2522,15 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 afterContextMenu = false;
         };
         var onInput = function(e) {
+            /*
             if (inComposition)
                 return;
+            */
             var data = text.value;
             data = data.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
             console.log(data);
-            //sendText(data);
-            //resetValue();
+            sendText(data);
+            resetValue();
         };
 
         var handleClipboardData = function(e, data, forceIEMime) {
