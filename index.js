@@ -2490,6 +2490,7 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
         var afterContextMenu = false;
 
         var sendText = function(data) {
+            console.log(data);
             if (inputHandler) {
                 data = inputHandler(data);
                 inputHandler = null;
