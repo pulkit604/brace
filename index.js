@@ -4702,6 +4702,7 @@ ace.define("ace/keyboard/keybinding",["require","exports","module","ace/lib/keys
         };
 
         this.$callKeyboardHandlers = function(hashId, keyString, keyCode, e) {
+            console.log(hashId,keyString,keyCode,e);
             var toExecute;
             var success = false;
             var commands = this.$editor.commands;
@@ -7937,7 +7938,7 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
-            text = text.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
+            //text = text.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
             if(text.replace(/\n/g, "") == ""){
                 return this.insertMergedLines(position, text, true);
             }
