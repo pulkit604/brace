@@ -2526,8 +2526,9 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 return;
             var data = text.value;
             data = data.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
-            sendText(data);
-            resetValue();
+            console.log(data);
+            //sendText(data);
+            //resetValue();
         };
 
         var handleClipboardData = function(e, data, forceIEMime) {
