@@ -2521,6 +2521,7 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 afterContextMenu = false;
         };
         var onInput = function(e) {
+            console.log(e);console.log('hre');
             if (inComposition)
                 return;
             var data = text.value;
@@ -4743,7 +4744,6 @@ ace.define("ace/keyboard/keybinding",["require","exports","module","ace/lib/keys
         };
 
         this.onTextInput = function(text) {
-            console.log(text);
             this.$callKeyboardHandlers(-1, text);
         };
 
