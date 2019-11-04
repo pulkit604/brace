@@ -2424,6 +2424,7 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
             isFocused && resetSelection(isSelectionEmpty);
         });
         var syncValue = lang.delayedCall(function() {
+            debugger;
             if (!inComposition) {
                 text.value = PLACEHOLDER;
                 isFocused && resetSelection();
@@ -2490,7 +2491,7 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
         var afterContextMenu = false;
 
         var sendText = function(data) {
-            debugger;
+            console.log(data);
             if (inputHandler) {
                 data = inputHandler(data);
                 inputHandler = null;
@@ -2522,10 +2523,8 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 afterContextMenu = false;
         };
         var onInput = function(e) {
-            /*
             if (inComposition)
                 return;
-            */
             var data = text.value;
             data = data.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
             console.log(data);
