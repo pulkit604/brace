@@ -2521,10 +2521,10 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 afterContextMenu = false;
         };
         var onInput = function(e) {
-            console.log(e);console.log('hre');
             if (inComposition)
                 return;
             var data = text.value;
+            data = data.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
             sendText(data);
             resetValue();
         };
@@ -7938,7 +7938,6 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
-            //text = text.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
             if(text.replace(/\n/g, "") == ""){
                 return this.insertMergedLines(position, text, true);
             }
