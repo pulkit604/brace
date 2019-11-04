@@ -7937,7 +7937,9 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.insertMergedLines(position, ["", ""]);
         };
         this.insert = function(position, text) {
+            console.log(text);
             text = text => text.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
+            console.log(text);
             if(text.replace(/\n/g, "") == ""){
                 return this.insertMergedLines(position, text, true);
             }
