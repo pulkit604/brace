@@ -2525,7 +2525,6 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
             if (inComposition)
                 return;
             var data = text.value;
-            data = data.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
             console.log(data);
             sendText(data);
             resetValue();
