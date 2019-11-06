@@ -2524,6 +2524,12 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
             if (inComposition)
                 return;
             var data = text.value;
+            for (let i=0;i<data.length;i++) {
+                if (data[i].charCodeAt(0) >= 5000) {
+                    console.log(data[i].charCodeAt(0));
+                    return;
+                }
+            }
             sendText(data);
             resetValue();
         };
