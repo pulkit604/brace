@@ -2526,8 +2526,8 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 return;
             var data = text.value;
             for (let i=0;i<data.length;i++) {
-                if (!(i.charCodeAt(0) >= 0xFF00 && i.charCodeAt(0) <= 0xFFEF)) {
-                    console.log(i.charCodeAt(0));
+                if (!(data[i].charCodeAt(0) >= 0xFF00 && data[i].charCodeAt(0) <= 0xFFEF)) {
+                    console.log(data[i].charCodeAt(0));
                     return;
                 }
 
