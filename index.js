@@ -2490,7 +2490,6 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
         var afterContextMenu = false;
 
         var sendText = function(data) {
-            console.log(data);
             if (inputHandler) {
                 data = inputHandler(data);
                 inputHandler = null;
@@ -2526,7 +2525,7 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 return;
             var data = text.value;
             for (let i=0;i<data.length;i++) {
-                if (!(data[i].charCodeAt(0) >= 0xFF00 && data[i].charCodeAt(0) <= 0xFFEF)) {
+                if (data[i].charCodeAt(0) >= 127) {
                     console.log(data[i].charCodeAt(0));
                     return;
                 }
