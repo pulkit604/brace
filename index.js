@@ -2521,7 +2521,6 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 afterContextMenu = false;
         };
         var onInput = function(e) {
-            debugger;
             if (inComposition)
                 return;
             var data = text.value;
@@ -4821,6 +4820,7 @@ ace.define("ace/lib/bidiutil",["require","exports","module"], function(acequire,
             for (i = 0, charTypes = []; i < len; i++) {
                 charTypes[i] = _getCharacterType(chars[i]);
             }
+            console.log(charTypes);
         }
         hiLevel = dir;
         lastArabic = false;
@@ -4989,6 +4989,7 @@ ace.define("ace/lib/bidiutil",["require","exports","module"], function(acequire,
     }
 
     function _getCharacterType( ch ) {
+        console.log(ch);
         var uc = ch.charCodeAt(0), hi = uc >> 8;
 
         if (hi == 0) {
@@ -5069,6 +5070,7 @@ ace.define("ace/lib/bidiutil",["require","exports","module"], function(acequire,
             if (!ret && (textCharTypes[i] == R || textCharTypes[i] == AL))
                 ret = true;
         }
+        console.log(ret);
         return ret;
     };
     exports.getVisualFromLogicalIdx = function(logIdx, rowMap) {
