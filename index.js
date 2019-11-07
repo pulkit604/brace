@@ -2521,7 +2521,6 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
                 afterContextMenu = false;
         };
         var onInput = function(e) {
-            debugger;
             if (inComposition)
                 return;
             var data = text.value;
@@ -2655,6 +2654,7 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
         };
 
         var onCompositionEnd = function(e) {
+            debugger;
             if (!host.onCompositionEnd || host.$readOnly) return;
             var c = inComposition;
             inComposition = false;
