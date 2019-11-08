@@ -2524,8 +2524,8 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
             if (inComposition)
                 return;
             var data = text.value;
-            foreach(var i=0;i<data.length;i++){
-              if (c >= 0xFF00 && c <= 0xFFEF) {
+            for (var i=0;i<data.length;i++){
+              if (data[i].charCodeAt(0) >= 0xFF00 && data[i].charCodeAt(0) <= 0xFFEF) {
                 debugger;
               }
             }
