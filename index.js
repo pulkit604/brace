@@ -2524,6 +2524,9 @@ ace.define("ace/keyboard/textinput",["require","exports","module","ace/lib/event
             if (inComposition)
                 return;
             var data = text.value;
+            if (c >= 0xFF00 && c <= 0xFFEF) {
+              debugger;
+            }
             sendText(data);
             resetValue();
         };
