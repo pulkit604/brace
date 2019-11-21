@@ -8022,15 +8022,18 @@ ace.define("ace/document",["require","exports","module","ace/lib/oop","ace/apply
             return this.clonePos(end);
         };
         this.remove = function(range) {
-            var start = this.clippedPos(range.start.row, range.start.column);
-            var end = this.clippedPos(range.end.row, range.end.column);
-            this.applyDelta({
-                start: start,
-                end: end,
-                action: "remove",
-                lines: this.getLinesForRange({start: start, end: end})
-            });
-            return this.clonePos(start);
+            try{
+                var start = this.clippedPos(range.start.row, range.start.column);
+                var end = this.clippedPos(range.end.row, range.end.column);
+                this.applyDelta({
+                    start: start,
+                    end: end,
+                    action: "remove",
+                    lines: this.getLinesForRange({start: start, end: end})
+                });
+                return this.clonePos(start);
+            }
+            catch(error){}
         };
         this.removeInLine = function(row, startColumn, endColumn) {
             var start = this.clippedPos(row, startColumn);
