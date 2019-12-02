@@ -16864,6 +16864,28 @@ position: absolute !important;\
 top: -100000px !important;\
 left: -100000px !important;\
 }\
+.ace_codepuzzlequestion {\
+  font: bold 11px Arial;\
+  text-decoration: none;\
+  background-color: #d0d9e0;\
+  color: transparent;\
+  padding: 3px;\
+  box-shadow: inset 0 0 5px #fff, inset 5px 0 10px #d0d9e0,\
+  inset -5px 0 5px silver, inset 5px 0 15px #d0d9e0, inset -5px 0 15px silver,\
+  0 0 10px #fff, -5px 0 10px #d0d9e0, 5px 0 10px silver;\
+  border-radius: 5px;\
+}\
+.ace_codepuzzleoption:not(:empty),\
+.ace_codepuzzleauto {\
+  border: 2px dashed #d0d9e0;\
+  border-radius: 4px;\
+  }\
+.ace_codepuzzleauto {\
+  color: transparent;\
+}\
+.ace_line .ace_fold {\
+  display: none !important;\
+  };\
 ";
 
     dom.importCssString(editorCss, "ace_editor.css");
