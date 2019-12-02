@@ -102,7 +102,29 @@ color: #494949\
 }\
 .ace-twilight .ace_indent-guide {\
 background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEklEQVQImWMQERFpYLC1tf0PAAgOAnPnhxyiAAAAAElFTkSuQmCC) right repeat-y\
-}";
+}\
+.ace_codepuzzlequestion {\
+  font: bold 11px Arial;\
+  text-decoration: none;\
+  background-color: #d0d9e0;\
+  color: transparent;\
+  padding: 3px;\
+  box-shadow: inset 0 0 5px #fff, inset 5px 0 10px #d0d9e0,\
+  inset -5px 0 5px silver, inset 5px 0 15px #d0d9e0, inset -5px 0 15px silver,\
+  0 0 10px #fff, -5px 0 10px #d0d9e0, 5px 0 10px silver;\
+  border-radius: 5px;\
+  }\
+.ace_codepuzzleoption:not(:empty),\
+.ace_codepuzzleauto {\
+  border: 2px dashed #d0d9e0;\
+  border-radius: 4px;\
+  }\
+.ace_codepuzzleauto {\
+  color: transparent;\
+  }\
+.ace_line .ace_fold {\
+  display: none !important;\
+  };"
 
 var dom = acequire("../lib/dom");
 dom.importCssString(exports.cssText, exports.cssClass);
