@@ -4281,7 +4281,7 @@ ace.define("ace/config",["require","exports","module","ace/lib/lang","ace/lib/oo
     exports.moduleUrl = function(name, component) {
         if (options.$moduleUrls[name])
             return options.$moduleUrls[name];
-
+        console.log(name);
         var parts = name.split("/");
         component = component || parts[parts.length - 2] || "";
         var sep = component == "snippets" ? "/" : "-";
