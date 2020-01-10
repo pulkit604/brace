@@ -4279,29 +4279,33 @@ ace.define("ace/config",["require","exports","module","ace/lib/lang","ace/lib/oo
         return lang.copyObject(options);
     };
     exports.moduleUrl = function(name, component) {
-        if (options.$moduleUrls[name])
-            return options.$moduleUrls[name];
-        console.log(name);
-        var parts = name.split("/");
-        component = component || parts[parts.length - 2] || "";
-        var sep = component == "snippets" ? "/" : "-";
-        var base = parts[parts.length - 1];
-        if (component == "worker" && sep == "-") {
-            var re = new RegExp("^" + component + "[\\-_]|[\\-_]" + component + "$", "g");
-            base = base.replace(re, "");
-        }
+        try{
+            if (options.$moduleUrls[name])
+                return options.$moduleUrls[name];
+            var parts = name.split("/");
+            component = component || parts[parts.length - 2] || "";
+            var sep = component == "snippets" ? "/" : "-";
+            var base = parts[parts.length - 1];
+            if (component == "worker" && sep == "-") {
+                var re = new RegExp("^" + component + "[\\-_]|[\\-_]" + component + "$", "g");
+                base = base.replace(re, "");
+            }
 
-        if ((!base || base == component) && parts.length > 1)
-            base = parts[parts.length - 2];
-        var path = options[component + "Path"];
-        if (path == null) {
-            path = options.basePath;
-        } else if (sep == "/") {
-            component = sep = "";
-        }
-        if (path && path.slice(-1) != "/")
-            path += "/";
-        return path + component + sep + base + this.get("suffix");
+            if ((!base || base == component) && parts.length > 1)
+                base = parts[parts.length - 2];
+            var path = options[component + "Path"];
+            if (path == null) {
+                path = options.basePath;
+            } else if (sep == "/") {
+                component = sep = "";
+            }
+            if (path && path.slice(-1) != "/")
+                path += "/";
+            return path + component + sep + base + this.get("suffix");
+          }
+          catch(error){
+            
+          }
     };
 
     exports.setModuleUrl = function(name, subst) {
