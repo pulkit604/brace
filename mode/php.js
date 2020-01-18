@@ -1878,15 +1878,15 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzlequestion",
-                regex : "__(?!_)[a-zA-z0-9]+__"
+                regex : "__(?!_)A__"
             },
             {
                 token : "codepuzzleoption",
-                regex : "codepuzzleoption_[a-zA-Z]_((?!_codepuzzleoption).)*_codepuzzleoption"
+                regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
             },
             {
                 token : "codepuzzleauto",  
-                regex : "___(?!_)[a-zA-z0-9]+__"
+                regex : "___(?!_)A__"
             },
             docComment.getStartRule("doc-start"),
             {

@@ -1292,7 +1292,6 @@ var lang = acequire("./lib/lang");
 var dom = acequire("./lib/dom");
 var snippetManager = acequire("./snippets").snippetManager;
 var Range = acequire("./range").Range;
-var curr_key = '';
 
 var Autocomplete = function() {
     this.autoInsert = false;
@@ -1451,11 +1450,11 @@ var Autocomplete = function() {
             }
             var data_added = '';
             if (data.snippet) {
-                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_' + curr_key + '_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
+                snippetManager.insertSnippet(this.editor, 'codepuzzleoption_A_' + data.snippet.replace('($0)','') + '_codepuzzleoption');
                 data_added = data.snippet;
             }
             else{
-                this.editor.execCommand("insertstring", 'codepuzzleoption_' + curr_key + '_' + data.value + '_codepuzzleoption');
+                this.editor.execCommand("insertstring", 'codepuzzleoption_A_' + data.value + '_codepuzzleoption');
                 data_added = data.value;
             }
             this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
@@ -1470,8 +1469,8 @@ var Autocomplete = function() {
             else{
                 this.editor.session.addFold('', new Range(curr_row, curr_token.start + data_added.length + 19, curr_row, curr_token.start + data_added.length+ 36));
             }
-            this.editor.auto_answers[curr_key.charCodeAt(0) - 65] = data_added.replace('($0)','');
-            this.editor._emit('updateNumAnswered');
+            this.editor.auto_answer = data_added.replace('($0)','');
+            this.editor._emit('updateAnswer');
         }
         this.detach();
     };
@@ -1693,7 +1692,6 @@ Autocomplete.startCommand = {
         editor.completer.autoInsert = false;
         editor.completer.autoSelect = true;
         editor.completer.showPopup(editor);
-        curr_key = arguments[1].key;
         editor.completer.cancelContextMenu();
     },
     bindKey: "Ctrl-Space|Ctrl-Shift-Space|Alt-Space"
@@ -1733,7 +1731,7 @@ var FilteredList = function(array, filterText) {
         var lower = needle.toLowerCase();
         loop: for (var i = 0, item; item = items[i]; i++) {
             var caption = item.value || item.caption || item.snippet;
-            if (!caption || caption.indexOf('codepuzzle') > -1 || caption.match('__[A-Z]__')) continue;
+            if (!caption || caption.indexOf('codepuzzle') > -1 || caption.match('__A__')) continue;
             var lastIndex = -1;
             var matchMask = 0;
             var penalty = 0;
