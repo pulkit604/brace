@@ -101,15 +101,6 @@ var JavaScriptHighlightRules = function(options) {
                 token : "string",
                 regex : "'(?=.)",
                 next  : "qstring"
-            },{
-            token : "codepuzzlequestion",
-            regex : "__(?!_)A__"
-            }, {
-            token : "codepuzzleoption",
-            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-            }, {
-            token : "codepuzzleauto",
-            regex : "___(?!_)A__"
             }, {
                 token : "string",
                 regex : '"(?=.)',
@@ -209,7 +200,16 @@ var JavaScriptHighlightRules = function(options) {
             }, {
                 token: "comment",
                 regex: /^#!.*$/
-            }
+            },{
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
+          }, {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          }, {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
+          }
         ],
         property: [{
                 token : "text",
