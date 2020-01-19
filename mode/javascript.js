@@ -101,6 +101,9 @@ var JavaScriptHighlightRules = function(options) {
                 token : "string",
                 regex : "'(?=.)",
                 next  : "qstring"
+            },{
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
             }, {
                 token : "string",
                 regex : '"(?=.)',
