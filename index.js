@@ -7693,7 +7693,7 @@ ace.define("ace/apply_delta",["require","exports","module"], function(acequire, 
                 if (row === endRow) {
                     docLines[row] = line.substring(0, startColumn) + line.substring(endColumn);
                 } else {
-                  console.log(docLines[endRow], endColumn);
+                  console.log(docLines, endColumn);
                     docLines.splice(
                         row, endRow - row + 1,
                         line.substring(0, startColumn) + docLines[endRow].substring(endColumn)
