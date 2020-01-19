@@ -9,7 +9,16 @@ var DocCommentHighlightRules = function() {
         "start" : [ {
             token : "comment.doc.tag",
             regex : "@[\\w\\d_]+" // TODO: fix email addresses
-        }, 
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        }, {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        }, {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
+        },
         DocCommentHighlightRules.getTagRule(),
         {
             defaultToken : "comment.doc",
@@ -200,16 +209,7 @@ var JavaScriptHighlightRules = function(options) {
             }, {
                 token: "comment",
                 regex: /^#!.*$/
-            },{
-            token : "codepuzzlequestion",
-            regex : "__(?!_)A__"
-          }, {
-            token : "codepuzzleoption",
-            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-          }, {
-            token : "codepuzzleauto",
-            regex : "___(?!_)A__"
-          }
+            },
         ],
         property: [{
                 token : "text",
