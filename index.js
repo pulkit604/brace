@@ -7688,12 +7688,12 @@ ace.define("ace/apply_delta",["require","exports","module"], function(acequire, 
                 }
                 break;
             case "remove":
+              console.log(delta);
                 var endColumn = delta.end.column;
                 var endRow = delta.end.row;
                 if (row === endRow) {
                     docLines[row] = line.substring(0, startColumn) + line.substring(endColumn);
                 } else {
-                  console.log(docLines, endColumn);
                     docLines.splice(
                         row, endRow - row + 1,
                         line.substring(0, startColumn) + docLines[endRow].substring(endColumn)
