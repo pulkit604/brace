@@ -7671,7 +7671,6 @@ ace.define("ace/apply_delta",["require","exports","module"], function(acequire, 
     }
 
     exports.applyDelta = function(docLines, delta, doNotValidate) {
-      console.log(docLines);
 
         var row = delta.start.row;
         var startColumn = delta.start.column;
@@ -7694,7 +7693,7 @@ ace.define("ace/apply_delta",["require","exports","module"], function(acequire, 
                 if (row === endRow) {
                     docLines[row] = line.substring(0, startColumn) + line.substring(endColumn);
                 } else {
-                  console.log(docLines);
+                  console.log(endRow);
                     docLines.splice(
                         row, endRow - row + 1,
                         line.substring(0, startColumn) + docLines[endRow].substring(endColumn)
