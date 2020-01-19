@@ -1457,7 +1457,7 @@ var Autocomplete = function() {
                 this.editor.execCommand("insertstring", 'codepuzzleoption_A_' + data.value + '_codepuzzleoption');
                 data_added = data.value;
             }
-            this.editor.find('codepuzzleoption_'+ curr_key +'_' + data_added + '_codepuzzleoption');
+            this.editor.find('codepuzzleoption_A_' + data_added + '_codepuzzleoption');
             var position = this.editor.getCursorPosition();
             var curr_row = position.row;
             var curr_col = position.column;
