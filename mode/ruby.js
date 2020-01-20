@@ -109,6 +109,15 @@ var RubyHighlightRules = function() {
             }, {
                 token : "string.regexp",
                 regex : "[/](?:(?:\\[(?:\\\\]|[^\\]])+\\])|(?:\\\\/|[^\\]/]))*[/]\\w*\\s*(?=[).,;]|$)"
+            }, {
+                token : "codepuzzlequestion",
+                regex : "__(?!_)[A-Z]__"
+            }, {
+                token : "codepuzzleoption",
+                regex : "codepuzzleoption_[A-Z]_((?!_codepuzzleoption).)*_codepuzzleoption"
+            }, {
+                token : "codepuzzleauto",
+                regex : "___(?!_)[A-Z]__"
             },
 
             [{
