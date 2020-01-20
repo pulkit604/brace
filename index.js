@@ -7688,7 +7688,7 @@ ace.define("ace/apply_delta",["require","exports","module"], function(acequire, 
                 }
                 break;
             case "remove":
-              console.log(delta);
+              debugger;
                 var endColumn = delta.end.column;
                 var endRow = delta.end.row;
                 if (row === endRow) {
