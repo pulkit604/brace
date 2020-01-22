@@ -797,16 +797,6 @@ var JavaScriptHighlightRules = acequire("./javascript_highlight_rules").JavaScri
 var TypeScriptHighlightRules = function(options) {
 
     var tsRules =  [
-      {
-        token : "codepuzzlequestion",
-        regex : "__(?!_)A__"
-      }, {
-        token : "codepuzzleoption",
-        regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-      }, {
-        token : "codepuzzleauto",
-        regex : "___(?!_)A__"
-      },
         {
             token: ["keyword.operator.ts", "text", "variable.parameter.function.ts", "text"],
             regex: "\\b(module)(\\s*)([a-zA-Z0-9_?.$][\\w?.$]*)(\\s*\\{)"
@@ -838,7 +828,16 @@ var TypeScriptHighlightRules = function(options) {
         {
             token: "keyword",
             regex: "(?:super|export|class|extends|import)\\b"
-        }
+        },{
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
+          }, {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          }, {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
+          },
     ];
 
     var JSRules = new JavaScriptHighlightRules({jsx: (options && options.jsx) == true}).getRules();
