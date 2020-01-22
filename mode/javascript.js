@@ -98,15 +98,6 @@ var JavaScriptHighlightRules = function(options) {
             DocCommentHighlightRules.getStartRule("doc-start"),
             comments("no_regex"),
               {
-                token : "codepuzzlequestion",
-                regex : "__(?!_)A__"
-              }, {
-                token : "codepuzzleoption",
-                regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-              }, {
-                token : "codepuzzleauto",
-                regex : "___(?!_)A__"
-              },   {
                 token : "string",
                 regex : "'(?=.)",
                 next  : "qstring"
@@ -391,6 +382,15 @@ var JavaScriptHighlightRules = function(options) {
                 next  : "pop"
             }, {
                 defaultToken: "string.quasi"
+            },{
+              token : "codepuzzlequestion",
+              regex : "__(?!_)A__"
+            }, {
+              token : "codepuzzleoption",
+              regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+            }, {
+              token : "codepuzzleauto",
+              regex : "___(?!_)A__"
             }]
         });
 
