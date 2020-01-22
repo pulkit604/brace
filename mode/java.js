@@ -852,6 +852,16 @@ var JavaHighlightRules = function() {
                 token : "comment",
                 regex : "\\/\\/.*$"
             },
+          {
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
+          }, {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          }, {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
+          },
             DocCommentHighlightRules.getStartRule("doc-start"),
             {
                 token : "comment", // multi line comment
