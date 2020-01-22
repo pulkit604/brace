@@ -232,16 +232,7 @@ var JavaScriptHighlightRules = function(options) {
                 regex: "",
                 token: "empty",
                 next: "no_regex"
-            },{
-                token : "codepuzzlequestion",
-                regex : "__(?!_)A__"
-              }, {
-                token : "codepuzzleoption",
-                regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-              }, {
-                token : "codepuzzleauto",
-                regex : "___(?!_)A__"
-              }
+            }
         ],
         "start": [
             DocCommentHighlightRules.getStartRule("doc-start"),
@@ -524,7 +515,16 @@ function comments(next) {
                 {token : "comment", regex : "$|^", next : next || "pop"},
                 {defaultToken : "comment", caseInsensitive: true}
             ]
-        }
+        },{
+        token : "codepuzzlequestion",
+        regex : "__(?!_)A__"
+      }, {
+        token : "codepuzzleoption",
+        regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+      }, {
+        token : "codepuzzleauto",
+        regex : "___(?!_)A__"
+      }
     ];
 }
 exports.JavaScriptHighlightRules = JavaScriptHighlightRules;
