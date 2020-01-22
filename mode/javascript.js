@@ -200,12 +200,34 @@ var JavaScriptHighlightRules = function(options) {
             }, {
                 token: "comment",
                 regex: /^#!.*$/
-            },
+            },{
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
+          },
+          {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          },
+          {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
+          },
         ],
         property: [{
                 token : "text",
                 regex : "\\s+"
             }, {
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+          {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          },
+          {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
+          },{
                 token : [
                     "storage.type", "punctuation.operator", "entity.name.function", "text",
                     "keyword.operator", "text",
@@ -249,7 +271,18 @@ var JavaScriptHighlightRules = function(options) {
                 token: "empty",
                 regex: "",
                 next: "no_regex"
-            },
+            },{
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
+          },
+          {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          },
+          {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
+          },
         ],
         "regex": [
             {
@@ -396,25 +429,6 @@ var JavaScriptHighlightRules = function(options) {
 };
 
 oop.inherits(JavaScriptHighlightRules, TextHighlightRules);
-
-var CodePuzzleHighlightRules = function(){
-  this.$rules = {
-    "start": [
-      {
-        token : "codepuzzlequestion",
-        regex : "__(?!_)A__"
-      },
-      {
-        token : "codepuzzleoption",
-        regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-      },
-      {
-        token : "codepuzzleauto",
-        regex : "___(?!_)A__"
-      }
-    ]}
-}
-oop.inherits(JavaScriptHighlightRules, CodePuzzleHighlightRules);
 
 function JSX() {
     var tagRegex = identifierRe.replace("\\d", "\\d\\-");
