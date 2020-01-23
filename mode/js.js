@@ -48,7 +48,7 @@ ace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module",
 
 });
 
-ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
+ace.define("ace/mode/cp_javascript_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/doc_comment_highlight_rules","ace/mode/text_highlight_rules"], function(acequire, exports, module) {
   "use strict";
 
   var oop = acequire("../lib/oop");
@@ -56,7 +56,7 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
   var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
   var identifierRe = "[a-zA-Z\\$_\u00a1-\uffff][a-zA-Z\\d\\$_\u00a1-\uffff]*";
 
-  var JavaScriptHighlightRules = function(options) {
+  var CpJavaScriptHighlightRules = function(options) {
     var keywordMapper = this.createKeywordMapper({
       "variable.language":
       "Array|Boolean|Date|Function|Iterator|Number|Object|RegExp|String|Proxy|"  + // Constructors
@@ -405,7 +405,7 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
     this.normalizeRules();
   };
 
-  oop.inherits(JavaScriptHighlightRules, TextHighlightRules);
+  oop.inherits(CpJavaScriptHighlightRules, TextHighlightRules);
 
   function JSX() {
     var tagRegex = identifierRe.replace("\\d", "\\d\\-");
@@ -528,7 +528,7 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
       }
     ];
   }
-  exports.JavaScriptHighlightRules = JavaScriptHighlightRules;
+  exports.CpJavaScriptHighlightRules = CpJavaScriptHighlightRules;
 });
 
 ace.define("ace/mode/matching_brace_outdent",["require","exports","module","ace/range"], function(acequire, exports, module) {
@@ -716,14 +716,14 @@ ace.define("ace/mode/js",["require","exports","module","ace/lib/oop","ace/mode/t
 
   var oop = acequire("../lib/oop");
   var TextMode = acequire("./text").Mode;
-  var JavaScriptHighlightRules = acequire("./javascript_highlight_rules").JavaScriptHighlightRules;
+  var CpJavaScriptHighlightRules = acequire("./cp_javascript_highlight_rules").CpJavaScriptHighlightRules;
   var MatchingBraceOutdent = acequire("./matching_brace_outdent").MatchingBraceOutdent;
   var WorkerClient = acequire("../worker/worker_client").WorkerClient;
   var CstyleBehaviour = acequire("./behaviour/cstyle").CstyleBehaviour;
   var CStyleFoldMode = acequire("./folding/cstyle").FoldMode;
 
   var Mode = function() {
-    this.HighlightRules = JavaScriptHighlightRules;
+    this.HighlightRules = CpJavaScriptHighlightRules;
 
     this.$outdent = new MatchingBraceOutdent();
     this.$behaviour = new CstyleBehaviour();
