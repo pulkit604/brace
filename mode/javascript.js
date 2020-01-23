@@ -391,9 +391,7 @@ var JavaScriptHighlightRules = function(options) {
     this.embedRules(DocCommentHighlightRules, "doc-",
         [ DocCommentHighlightRules.getEndRule("no_regex") ]);
 
-  var cp_rules  = {
-
-    "start": [
+  var cp_rules  = [
         {
       token : "codepuzzlequestion",
       regex : "__(?!_)A__"
@@ -405,8 +403,7 @@ var JavaScriptHighlightRules = function(options) {
       {
         token : "codepuzzleauto",
         regex : "___(?!_)A__"
-      }]
-  };
+      }];
 
   this.embedRules(DocCommentHighlightRules, "cp-",
       cp_rules);
