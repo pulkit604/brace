@@ -200,34 +200,12 @@ var JavaScriptHighlightRules = function(options) {
             }, {
                 token: "comment",
                 regex: /^#!.*$/
-            },{
-            token : "codepuzzlequestion",
-            regex : "__(?!_)A__"
-          },
-          {
-            token : "codepuzzleoption",
-            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-          },
-          {
-            token : "codepuzzleauto",
-            regex : "___(?!_)A__"
-          },
+            },
         ],
         property: [{
                 token : "text",
                 regex : "\\s+"
             }, {
-          token : "codepuzzlequestion",
-          regex : "__(?!_)A__"
-        },
-          {
-            token : "codepuzzleoption",
-            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-          },
-          {
-            token : "codepuzzleauto",
-            regex : "___(?!_)A__"
-          },{
                 token : [
                     "storage.type", "punctuation.operator", "entity.name.function", "text",
                     "keyword.operator", "text",
@@ -271,18 +249,7 @@ var JavaScriptHighlightRules = function(options) {
                 token: "empty",
                 regex: "",
                 next: "no_regex"
-            },{
-            token : "codepuzzlequestion",
-            regex : "__(?!_)A__"
-          },
-          {
-            token : "codepuzzleoption",
-            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-          },
-          {
-            token : "codepuzzleauto",
-            regex : "___(?!_)A__"
-          },
+            },
         ],
         "regex": [
             {
@@ -746,6 +713,7 @@ var CstyleBehaviour = acequire("./behaviour/cstyle").CstyleBehaviour;
 var CStyleFoldMode = acequire("./folding/cstyle").FoldMode;
 
 var Mode = function() {
+    console.log(JavaScriptHighlightRules);
     this.HighlightRules = JavaScriptHighlightRules;
     
     this.$outdent = new MatchingBraceOutdent();
