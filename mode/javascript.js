@@ -10,6 +10,18 @@ ace.define("ace/mode/doc_comment_highlight_rules",["require","exports","module",
         token : "comment.doc.tag",
         regex : "@[\\w\\d_]+" // TODO: fix email addresses
       },
+        {
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
+        },
         DocCommentHighlightRules.getTagRule(),
         {
           defaultToken : "comment.doc",
@@ -201,6 +213,18 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           token: "comment",
           regex: /^#!.*$/
         },
+        {
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
+        }
       ],
       property: [{
         token : "text",
@@ -232,7 +256,18 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
         regex: "",
         token: "empty",
         next: "no_regex"
-      }
+      },{
+        token : "codepuzzlequestion",
+        regex : "__(?!_)A__"
+      },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
+        }
       ],
       "start": [
         DocCommentHighlightRules.getStartRule("doc-start"),
@@ -249,6 +284,17 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           token: "empty",
           regex: "",
           next: "no_regex"
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
         }
       ],
       "regex": [
@@ -278,6 +324,17 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           next: "no_regex"
         }, {
           defaultToken: "string.regexp"
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
         }
       ],
       "regex_character_class": [
@@ -297,6 +354,17 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           next: "no_regex"
         }, {
           defaultToken: "string.regexp.charachterclass"
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
         }
       ],
       "function_arguments": [
@@ -313,6 +381,17 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           token: "empty",
           regex: "",
           next: "no_regex"
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
         }
       ],
       "qqstring" : [
@@ -329,6 +408,17 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           next  : "no_regex"
         }, {
           defaultToken: "string"
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
         }
       ],
       "qstring" : [
@@ -345,6 +435,17 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           next  : "no_regex"
         }, {
           defaultToken: "string"
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
         }
       ]
     };
@@ -390,23 +491,6 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
 
     this.embedRules(DocCommentHighlightRules, "doc-",
         [ DocCommentHighlightRules.getEndRule("no_regex") ]);
-
-    var cp_rules  = [
-      {
-        token : "codepuzzlequestion",
-        regex : "__(?!_)A__"
-      },
-      {
-        token : "codepuzzleoption",
-        regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-      },
-      {
-        token : "codepuzzleauto",
-        regex : "___(?!_)A__"
-      }];
-
-    this.embedRules(JavaScriptHighlightRules, "start-",
-        cp_rules);
 
     this.normalizeRules();
   };
@@ -531,6 +615,17 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           {token : "comment", regex : "$|^", next : next || "pop"},
           {defaultToken : "comment", caseInsensitive: true}
         ]
+      },{
+        token : "codepuzzlequestion",
+        regex : "__(?!_)A__"
+      },
+      {
+        token : "codepuzzleoption",
+        regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+      },
+      {
+        token : "codepuzzleauto",
+        regex : "___(?!_)A__"
       }
     ];
   }
