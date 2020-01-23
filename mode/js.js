@@ -73,7 +73,7 @@ ace.define("ace/mode/cp_javascript_highlight_rules",["require","exports","module
       "const|yield|import|get|set|async|await|" +
       "break|case|catch|continue|default|delete|do|else|finally|for|function|" +
       "if|in|of|instanceof|new|return|switch|throw|try|typeof|let|var|while|with|debugger|" +
-      "__parent__|__count__|__A__|escape|unescape|with|__proto__|" +
+      "__parent__|__count__|escape|unescape|with|__proto__|" +
       "class|enum|extends|super|export|implements|private|public|interface|package|protected|static",
       "storage.type":
           "const|let|var|function",
@@ -235,6 +235,18 @@ ace.define("ace/mode/cp_javascript_highlight_rules",["require","exports","module
       }
       ],
       "start": [
+        {
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
+        },
         DocCommentHighlightRules.getStartRule("doc-start"),
         comments("start"),
         {
