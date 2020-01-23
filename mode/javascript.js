@@ -362,7 +362,7 @@ var JavaScriptHighlightRules = function(options) {
         {
           token : "codepuzzleauto",
           regex : "___(?!_)A__"
-        },
+        }
       ]};
   this.addRules(codePuzzleRules, "new-");
 
