@@ -795,5 +795,5 @@ ace.define("ace/mode/javascript",["require","exports","module","ace/lib/oop","ac
     this.$id = "ace/mode/js";
   }).call(Mode.prototype);
 
-  exports.Mode = Modes;
+  exports.Mode = Mode;
 });
