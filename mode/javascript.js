@@ -349,7 +349,7 @@ var JavaScriptHighlightRules = function(options) {
         ]
     };
 
-    var codePuzzleRules = {
+    this.$rules = {
       "start" :[
         {
           token : "codepuzzlequestion",
@@ -364,7 +364,8 @@ var JavaScriptHighlightRules = function(options) {
           regex : "___(?!_)A__"
         }
       ]};
-  this.addRules(codePuzzleRules, "new-");
+
+  //this.addRules(codePuzzleRules, "new-");
 
   if (!options || !options.noES6) {
         this.$rules.no_regex.unshift({
