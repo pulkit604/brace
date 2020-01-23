@@ -203,15 +203,6 @@ var JavaScriptHighlightRules = function(options) {
             },
         ],
         property: [{
-                token : "codepuzzlequestion",
-                regex : "__(?!_)A__"
-            }, {
-                token : "codepuzzleoption",
-                regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-            }, {
-                token : "codepuzzleauto",
-                regex : "___(?!_)A__"
-            },{
                 token : "text",
                 regex : "\\s+"
             }, {
@@ -244,6 +235,16 @@ var JavaScriptHighlightRules = function(options) {
             }
         ],
         "start": [
+          {
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
+          }, {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          }, {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
+          },
             DocCommentHighlightRules.getStartRule("doc-start"),
             comments("start"),
             {
