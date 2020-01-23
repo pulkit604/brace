@@ -346,20 +346,6 @@ var JavaScriptHighlightRules = function(options) {
             }, {
                 defaultToken: "string"
             }
-        ],
-      "support" :[
-        {
-          token : "codepuzzlequestion",
-          regex : "__(?!_)A__"
-        },
-        {
-          token : "codepuzzleoption",
-          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-        },
-        {
-          token : "codepuzzleauto",
-          regex : "___(?!_)A__"
-        }
         ]
     };
 
@@ -404,6 +390,26 @@ var JavaScriptHighlightRules = function(options) {
 
     this.embedRules(DocCommentHighlightRules, "doc-",
         [ DocCommentHighlightRules.getEndRule("no_regex") ]);
+
+  var cp_rules  = {
+
+    "start": [
+        {
+      token : "codepuzzlequestion",
+      regex : "__(?!_)A__"
+      },
+      {
+        token : "codepuzzleoption",
+        regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+      },
+      {
+        token : "codepuzzleauto",
+        regex : "___(?!_)A__"
+      }]
+  };
+
+  this.embedRules(DocCommentHighlightRules, "cp-",
+      cp_rules);
 
     this.normalizeRules();
 };
