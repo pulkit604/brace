@@ -794,5 +794,5 @@ oop.inherits(Mode, TextMode);
     this.$id = "ace/mode/javascript";
 }).call(Mode.prototype);
 
-exports.Mode = Mode;
+exports.Mode = Modes;
 });
