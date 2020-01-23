@@ -249,16 +249,7 @@ var JavaScriptHighlightRules = function(options) {
                 token: "empty",
                 regex: "",
                 next: "no_regex"
-            },{
-                token : "codepuzzlequestion",
-                regex : "__(?!_)A__"
-              }, {
-                token : "codepuzzleoption",
-                regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
-              }, {
-                token : "codepuzzleauto",
-                regex : "___(?!_)A__"
-              },
+            }
         ],
         "regex": [
             {
@@ -358,8 +349,24 @@ var JavaScriptHighlightRules = function(options) {
         ]
     };
 
+    var codePuzzleRules = {
+      "start" :[
+        {
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
+        },
+      ]};
+  this.addRules(codePuzzleRules, "new-");
 
-    if (!options || !options.noES6) {
+  if (!options || !options.noES6) {
         this.$rules.no_regex.unshift({
             regex: "[{}]", onMatch: function(val, state, stack) {
                 this.next = val == "{" ? this.nextState : "";
