@@ -828,6 +828,18 @@ var TypeScriptHighlightRules = function(options) {
         {
             token: "keyword",
             regex: "(?:super|export|class|extends|import)\\b"
+        },
+        {
+            token : "codepuzzlequestion",
+            regex : "__(?!_)[A-Z]__"
+        },
+        {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_[A-Z]_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+            token : "codepuzzleauto",
+            regex : "___(?!_)[A-Z]__"
         }
     ];
 

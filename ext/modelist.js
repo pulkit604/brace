@@ -97,6 +97,7 @@ var supportedModes = {
     Jade:        ["jade|pug"],
     Java:        ["java"],
     JavaScript:  ["js|jsm|jsx"],
+    Js:          ["js"],
     JSON:        ["json"],
     JSONiq:      ["jq"],
     JSP:         ["jsp"],
