@@ -9,6 +9,15 @@ var DocCommentHighlightRules = function() {
         "start" : [ {
             token : "comment.doc.tag",
             regex : "@[\\w\\d_]+" // TODO: fix email addresses
+        }, {
+            token : "codepuzzlequestion",
+            regex : "__(?!_)A__"
+        }, {
+            token : "codepuzzleoption",
+            regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        }, {
+            token : "codepuzzleauto",
+            regex : "___(?!_)A__"
         },
         DocCommentHighlightRules.getTagRule(),
         {
@@ -713,7 +722,7 @@ var CstyleBehaviour = acequire("./behaviour/cstyle").CstyleBehaviour;
 var CStyleFoldMode = acequire("./folding/cstyle").FoldMode;
 
 var Mode = function() {
-    this.HighlightRules = JavaScriptHighlightRules
+    this.HighlightRules = JavaScriptHighlightRules;
     
     this.$outdent = new MatchingBraceOutdent();
     this.$behaviour = new CstyleBehaviour();
