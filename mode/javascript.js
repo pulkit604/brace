@@ -346,11 +346,8 @@ var JavaScriptHighlightRules = function(options) {
             }, {
                 defaultToken: "string"
             }
-        ]
-    };
-
-    this.$rules = {
-      "start" :[
+        ],
+      "support" :[
         {
           token : "codepuzzlequestion",
           regex : "__(?!_)A__"
@@ -363,9 +360,8 @@ var JavaScriptHighlightRules = function(options) {
           token : "codepuzzleauto",
           regex : "___(?!_)A__"
         }
-      ]};
-
-  //this.addRules(codePuzzleRules, "new-");
+        ]
+    };
 
   if (!options || !options.noES6) {
         this.$rules.no_regex.unshift({
