@@ -405,7 +405,7 @@ var JavaScriptHighlightRules = function(options) {
         regex : "___(?!_)A__"
       }];
 
-  this.embedRules(DocCommentHighlightRules, "cp-",
+  this.embedRules(DocCommentHighlightRules, "css-",
       cp_rules);
 
     this.normalizeRules();
