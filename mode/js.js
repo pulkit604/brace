@@ -249,7 +249,18 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
           token: "empty",
           regex: "",
           next: "no_regex"
-        }
+        },{
+          token : "codepuzzlequestion",
+          regex : "__(?!_)A__"
+        },
+        {
+          token : "codepuzzleoption",
+          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        },
+        {
+          token : "codepuzzleauto",
+          regex : "___(?!_)A__"
+        },
       ],
       "regex": [
         {
@@ -781,7 +792,7 @@ ace.define("ace/mode/javascript",["require","exports","module","ace/lib/oop","ac
       return worker;
     };
 
-    this.$id = "ace/mode/javascript";
+    this.$id = "ace/mode/js";
   }).call(Mode.prototype);
 
   exports.Mode = Modes;
