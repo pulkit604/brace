@@ -89,7 +89,17 @@ var RustHighlightRules = function() {
          { token: 'constant.numeric.source.rust',
            regex: /\b(?:0x[a-fA-F0-9_]+|0o[0-7_]+|0b[01_]+|[0-9][0-9_]*(?!\.))(?:[iu](?:size|8|16|32|64|128))?\b/ },
          { token: 'constant.numeric.source.rust',
-           regex: /\b(?:[0-9][0-9_]*)(?:\.[0-9][0-9_]*)?(?:[Ee][+-][0-9][0-9_]*)?(?:f32|f64)?\b/ } ] };
+           regex: /\b(?:[0-9][0-9_]*)(?:\.[0-9][0-9_]*)?(?:[Ee][+-][0-9][0-9_]*)?(?:f32|f64)?\b/ },
+         {
+         token : "codepuzzlequestion",
+         regex : "__(?!_)A__"
+        }, {
+         token : "codepuzzleoption",
+         regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+        }, {
+         token : "codepuzzleauto",
+         regex : "___(?!_)A__"
+       } ] };
     
     this.normalizeRules();
 };
