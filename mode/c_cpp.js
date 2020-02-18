@@ -107,6 +107,15 @@ var c_cppHighlightRules = function() {
     this.$rules = { 
         "start" : [
             {
+                token : "codepuzzlequestion",
+                regex : "__(?!_)[A-Z]__"
+            }, {
+                token : "codepuzzleoption",
+                regex : "codepuzzleoption_[A-Z]_((?!_codepuzzleoption).)*_codepuzzleoption" },
+            {
+                token : "codepuzzleauto",
+                regex : "___(?!_)[A-Z]__"
+            }, {
                 token : "comment",
                 regex : "//$",
                 next : "start"
