@@ -237,7 +237,7 @@ ace.define("ace/mode/cp_javascript_highlight_rules",["require","exports","module
       "start": [
         {
           token : "codepuzzlequestion",
-          regex : "__(?!_)A__"
+          regex : /__(?!_)A__/
         },
         {
           token : "codepuzzleoption",
@@ -263,7 +263,7 @@ ace.define("ace/mode/cp_javascript_highlight_rules",["require","exports","module
           next: "no_regex"
         },{
           token : "codepuzzlequestion",
-          regex : "__(?!_)A__"
+          regex : /__(?!_)A__/
         },
         {
           token : "codepuzzleoption",

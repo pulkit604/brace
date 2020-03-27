@@ -108,7 +108,7 @@ var c_cppHighlightRules = function() {
         "start" : [
           {
             token : "codepuzzlequestion",
-            regex : "__(?!_)A__"
+            regex : /__(?!_)A__/
           },
           {
             token : "codepuzzleoption",

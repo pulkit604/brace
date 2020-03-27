@@ -92,7 +92,7 @@ var RustHighlightRules = function() {
            regex: /\b(?:[0-9][0-9_]*)(?:\.[0-9][0-9_]*)?(?:[Ee][+-][0-9][0-9_]*)?(?:f32|f64)?\b/ },
          {
          token : "codepuzzlequestion",
-         regex : "__(?!_)A__"
+         regex : /__(?!_)A__/
         }, {
          token : "codepuzzleoption",
          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"

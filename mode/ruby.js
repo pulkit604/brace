@@ -111,7 +111,7 @@ var RubyHighlightRules = function() {
                 regex : "[/](?:(?:\\[(?:\\\\]|[^\\]])+\\])|(?:\\\\/|[^\\]/]))*[/]\\w*\\s*(?=[).,;]|$)"
             },{
             token : "codepuzzlequestion",
-            regex : "__(?!_)A__"
+            regex : /__(?!_)A__/
           }, {
             token : "codepuzzleoption",
             regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"

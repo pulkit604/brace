@@ -830,7 +830,7 @@ var TypeScriptHighlightRules = function(options) {
             regex: "(?:super|export|class|extends|import)\\b"
         },{
             token : "codepuzzlequestion",
-            regex : "__(?!_)A__"
+            regex : /__(?!_)A__/
           }, {
             token : "codepuzzleoption",
             regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"

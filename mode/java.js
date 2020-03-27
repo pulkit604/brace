@@ -854,7 +854,7 @@ var JavaHighlightRules = function() {
             },
             {
               token : "codepuzzlequestion",
-              regex : "__(?!_)A__"
+              regex : /__(?!_)A__/
             },
             {
               token : "codepuzzleoption",
@@ -901,7 +901,7 @@ var JavaHighlightRules = function() {
                 regex : "\\s+"
             }, {
                 token : "codepuzzlequestion",
-                regex : "__(?!_)A__"
+                regex : /__(?!_)A__/
               }, {
                 token : "codepuzzleoption",
                 regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
