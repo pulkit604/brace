@@ -1878,7 +1878,7 @@ var PhpLangHighlightRules = function() {
             },
             {
                 token : "codepuzzlequestion",
-                regex : /__(?!_)A__/
+                regex : /(?!_)__(?!_)A__(?!_)/
             },
             {
                 token : "codepuzzleoption",
