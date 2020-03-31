@@ -1943,6 +1943,8 @@ var PhpLangHighlightRules = function() {
                         "T(?:HOUS(?:ANDS_SEP|EP)|_FMT(?:_AMPM|))|YES(?:EXPR|STR)|STD(?:IN|OUT|ERR))\\b"
             }, {
                 token : function(value) {
+                    if(value == '__A__')
+                        return "codepuzzlequestion";
                     if (keywords.hasOwnProperty(value))
                         return "keyword";
                     else if (builtinConstants.hasOwnProperty(value))
