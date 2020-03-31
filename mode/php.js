@@ -1906,12 +1906,6 @@ var PhpLangHighlightRules = function() {
                         "L(?:IBDIR|OCALSTATEDIR)|O(?:S|UTPUT_HANDLER_(?:CONT|END|START))|PREFIX|S(?:API|HLIB_SUFFIX|YSCONFDIR)|" +
                         "VERSION))|__COMPILER_HALT_OFFSET__)\\b"
             }, {
-                token : ["keyword", "text", "support.class"],
-                regex : "\\b(new)(\\s+)(\\w+)"
-            }, {
-                token : ["support.class", "keyword.operator"],
-                regex : "\\b(\\w+)(::)"
-            }, {
                 token : "constant.language", // constants
                 regex : "\\b(?:A(?:B(?:DAY_(?:1|2|3|4|5|6|7)|MON_(?:1(?:0|1|2|)|2|3|4|5|6|7|8|9))|LT_DIGITS|M_STR|" +
                         "SSERT_(?:ACTIVE|BAIL|CALLBACK|QUIET_EVAL|WARNING))|C(?:ASE_(?:LOWER|UPPER)|HAR_MAX|" +
