@@ -101,11 +101,11 @@ ace.define("ace/mode/cp_javascript_highlight_rules",["require","exports","module
         },
         {
           token : "codepuzzleoption",
-          regex : "codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption"
+          regex : /codepuzzleoption_A_((?!_codepuzzleoption).)*_codepuzzleoption/
         },
         {
           token : "codepuzzleauto",
-          regex : "___(?!_)A__"
+          regex : /___(?!_)A__/
         },
         DocCommentHighlightRules.getStartRule("doc-start"),
         comments("no_regex"),
