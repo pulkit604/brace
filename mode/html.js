@@ -54,7 +54,7 @@ ace.define("ace/mode/javascript_highlight_rules",["require","exports","module","
 var oop = acequire("../lib/oop");
 var DocCommentHighlightRules = acequire("./doc_comment_highlight_rules").DocCommentHighlightRules;
 var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
-var identifierRe = "[a-zA-Z\\$_\u00a1-\uffff][a-zA-Z\\d\\$_\u00a1-\uffff]*";
+var identifierRe = "(?![__A__codepuzzleoption])[a-zA-Z\\\\$_\u00a1-\uffff][a-zA-Z\\\\d\\\\$_\u00a1-\uffff]*";
 
 var JavaScriptHighlightRules = function(options) {
     var keywordMapper = this.createKeywordMapper({
@@ -95,6 +95,18 @@ var JavaScriptHighlightRules = function(options) {
 
     this.$rules = {
         "no_regex" : [
+            {
+                token : "codepuzzlequestion",
+                regex : /__(?!_)[A-Z]__/
+            },
+            {
+                token : "codepuzzleoption",
+                regex : /codepuzzleoption_[A-Z]_((?!_codepuzzleoption).)*_codepuzzleoption/
+            },
+            {
+                token : "codepuzzleauto",
+                regex : /___(?!_)[A-Z]__/
+            },
             DocCommentHighlightRules.getStartRule("doc-start"),
             comments("no_regex"),
             {
