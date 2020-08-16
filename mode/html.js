@@ -481,7 +481,7 @@ function JSX() {
         regex : "="
     }, {
         token : "text.tag-whitespace.xml",
-        regex : "\\s+"
+        regex : "\\s+(?![__A__])"
     }, {
         token : "string.attribute-value.xml",
         regex : "'",
