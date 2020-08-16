@@ -1327,7 +1327,7 @@ var oop = acequire("../lib/oop");
 var TextHighlightRules = acequire("./text_highlight_rules").TextHighlightRules;
 
 var XmlHighlightRules = function(normalize) {
-    var tagRegex = "(?![__A__])[_:a-zA-Z\xc0-\uffff][-_:.a-zA-Z0-9\xc0-\uffff]*";
+    var tagRegex = "[_:a-zA-Z\xc0-\uffff][-_:.a-zA-Z0-9\xc0-\uffff]*";
 
     this.$rules = {
         start : [
@@ -1560,7 +1560,7 @@ var HtmlHighlightRules = function() {
             include : "tag_whitespace"
         }, {
             token : "entity.other.attribute-name.xml",
-            regex : "[-_a-zA-Z0-9:.]+"
+            regex : "(?![__A__])[-_a-zA-Z0-9:.]+"
         }, {
             token : "keyword.operator.attribute-equals.xml",
             regex : "=",
